@@ -89,7 +89,7 @@ export default function Dashboard() {
             </div>
             
             <nav 
-              className="hidden lg:flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5 relative"
+              className="flex overflow-x-auto hide-scrollbar lg:overflow-visible items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5 relative max-w-[55vw] sm:max-w-[65vw] lg:max-w-none"
               onMouseLeave={() => setHoveredTab(null)}
             >
               {TABS.map((tab) => (

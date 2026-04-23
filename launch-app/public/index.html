@@ -1613,6 +1613,9 @@
       }
     }
     }
+
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 
@@ -1744,7 +1747,7 @@
           </a>
         </div>
         <ul
-          class="sui-navbar-nav hidden lg:flex items-center justify-center gap-3 font-headline text-xs uppercase tracking-[0.2em] relative z-20">
+          class="sui-navbar-nav flex overflow-x-auto hide-scrollbar lg:overflow-visible items-center justify-start lg:justify-center gap-3 font-headline text-xs uppercase tracking-[0.2em] relative z-20 px-4 lg:px-0 max-w-[50vw] sm:max-w-[60vw] lg:max-w-none ml-auto mr-4 lg:mx-0">
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#tech" class="nav-link">Stack</a></li>
           <li><a href="#ecosystem" class="nav-link">Eco</a></li>
