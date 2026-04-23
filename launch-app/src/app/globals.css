@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  
+  --primary: #4F46E5;
+  --primary-dim: #5B2CFF;
+  --accent-blue: #2563EB;
+  
+  --surface: #000000;
+  --surface-container-low: #050505;
+  --surface-container: #0a0a0e;
+  --surface-container-high: #0e0e0e;
+  --surface-container-highest: #121218;
+  
+  --on-surface: #ffffff;
+  --on-surface-variant: #adaaaa;
+  
+  --outline: #ffffff;
+  --outline-variant: rgba(255, 255, 255, 0.1);
+  
+  --gradient-brand: linear-gradient(135deg, #5b2cff 0%, #4a42f4 50%, #2563eb 100%);
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-dim: var(--primary-dim);
+  --color-accent: var(--accent-blue);
+  
+  --color-surface-low: var(--surface-container-low);
+  --color-surface: var(--surface-container);
+  --color-surface-high: var(--surface-container-high);
+  --color-surface-highest: var(--surface-container-highest);
+  
+  --color-muted: var(--on-surface-variant);
+  --color-border: var(--outline-variant);
+  
+  --animate-shimmer: textShimmer 5s linear infinite;
+  
+  @keyframes textShimmer {
+    to { background-position: 200% center; }
+  }
+}
+
+* {
+  @apply border-white/5;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.text-brand-gradient {
+  @apply bg-clip-text text-transparent;
+  background-image: var(--gradient-brand);
+}
+
+.shimmer-text {
+  @apply bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer;
+  background-image: linear-gradient(
+    to right,
+    #ffffff 0%,
+    var(--primary) 25%,
+    var(--primary-dim) 50%,
+    #ffffff 100%
+  );
+}
+
+.btn-brand {
+  @apply relative overflow-hidden text-white font-bold transition-all;
+  background: var(--gradient-brand);
+}
+
+.btn-brand::before {
+  @apply content-[''] absolute top-0 left-0 w-full h-full bg-white opacity-0 transition-opacity z-0;
+}
+
+.btn-brand:hover::before {
+  @apply opacity-10;
+}
+
+.glow-container {
+  @apply relative overflow-hidden;
+}
+
+.glow-item {
+  @apply absolute rounded-full blur-[100px] pointer-events-none;
+  background: radial-gradient(circle, rgba(91,44,255,0.15) 0%, transparent 70%);
+}
+
+/* ─── LIVING VOID BACKGROUND ──────────────────────────────── */
+.void-bg {
+  position: relative;
+  overflow: hidden;
+}
+.void-bg::before {
+  content: '';
+  position: fixed;
+  top: -20%;
+  right: -15%;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(91,44,255,0.12) 0%, rgba(0,0,0,0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orb-drift1 18s ease-in-out infinite alternate;
+}
+.void-bg::after {
+  content: '';
+  position: fixed;
+  bottom: -20%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.10) 0%, rgba(0,0,0,0) 70%);
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orb-drift2 22s ease-in-out infinite alternate;
+}
+
+@keyframes orb-drift1 {
+  from { transform: translateY(0px) translateX(0px); }
+  to   { transform: translateY(60px) translateX(-40px); }
+}
+@keyframes orb-drift2 {
+  from { transform: translateY(0px) translateX(0px); }
+  to   { transform: translateY(-50px) translateX(50px); }
+}
+
+/* ─── MOUSE SPOTLIGHT CARD ───────────────────────────────────  */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  --mouse-x: -999px;
+  --mouse-y: -999px;
+}
+.spotlight-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 60%);
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+/* ─── BONEYARD SKELETON ──────────────────────────────────────  */
+.skeleton {
+  background: #0d0d14;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(91,44,255,0.08) 40%,
+    rgba(37,99,235,0.06) 50%,
+    rgba(91,44,255,0.08) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 2s infinite linear;
+}
+@keyframes skeleton-shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+
+/* Float Logo */
+@keyframes float-logo {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+.float-logo {
+  animation: float-logo 6s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1e1e2d;
+}

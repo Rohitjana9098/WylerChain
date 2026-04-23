@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#4F46E5",
+                        "surface-container-low": "#131313",
+                        "surface-variant": "#262626",
+                        "on-primary-container": "#370060",
+                        "outline": "#777575",
+                        "tertiary-dim": "#645efb",
+                        "inverse-primary": "#803bbe",
+                        "surface-container": "#1a1919",
+                        "inverse-on-surface": "#565554",
+                        "on-secondary-fixed": "#003271",
+                        "on-secondary": "#001e4a",
+                        "surface": "#0e0e0e",
+                        "on-tertiary-container": "#000000",
+                        "on-error-container": "#ffb2b9",
+                        "on-background": "#ffffff",
+                        "on-surface-variant": "#adaaaa",
+                        "on-error": "#490013",
+                        "secondary-container": "#005ac2",
+                        "secondary-dim": "#699cff",
+                        "on-primary-fixed-variant": "#440075",
+                        "primary-fixed": "#c483ff",
+                        "error": "#ff6e84",
+                        "primary-dim": "#c37fff",
+                        "surface-dim": "#0e0e0e",
+                        "secondary": "#699cff",
+                        "on-tertiary-fixed-variant": "#2300bf",
+                        "on-surface": "#ffffff",
+                        "background": "#0e0e0e",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004da8",
+                        "surface-bright": "#2c2c2c",
+                        "tertiary-fixed-dim": "#9b98ff",
+                        "secondary-fixed-dim": "#a9c4ff",
+                        "on-tertiary": "#120076",
+                        "secondary-fixed": "#bfd1ff",
+                        "surface-tint": "#4F46E5",
+                        "tertiary-container": "#6760fd",
+                        "on-tertiary-fixed": "#0c005f",
+                        "error-dim": "#d73357",
+                        "inverse-surface": "#fcf8f8",
+                        "tertiary-fixed": "#aaa8ff",
+                        "error-container": "#a70138",
+                        "on-secondary-container": "#f7f7ff",
+                        "surface-container-highest": "#262626",
+                        "surface-container-lowest": "#000000",
+                        "on-primary-fixed": "#ffffff",
+                        "outline-variant": "#494847",
+                        "surface-container-high": "#201f1f",
+                        "tertiary": "#9492ff",
+                        "primary-container": "#4F46E5",
+                        "primary-fixed-dim": "#4F46E5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0e0e0e; color: #ffffff; margin: 0; scroll-behavior: smooth; overflow-x: hidden; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mesh Gradient Background */
+        .mesh-gradient {
+            background: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(105, 156, 255, 0.1) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(0, 0, 0, 1) 0px, #0e0e0e 100%);
+            animation: mesh-flow 20s ease-in-out infinite alternate;
+        }
+        @keyframes mesh-flow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .monolith-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.2) 0%, rgba(105, 156, 255, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 30px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Enhanced Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(79, 70, 229, 0.3);
+            transform: translateY(-8px);
+        }
+
+        /* Hero Logo Effects */
+        .logo-glow-pulse {
+            animation: logo-pulse 4s ease-in-out infinite;
+        }
+        @keyframes logo-pulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.3)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 50px rgba(79, 70, 229, 0.7)); transform: scale(1.02); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Architecture Glow */
+        .stack-node-glow {
+            animation: node-glow 3s infinite alternate;
+        }
+        @keyframes node-glow {
+            from { box-shadow: 0 0 10px rgba(79, 70, 229, 0.1); border-color: rgba(79, 70, 229, 0.3); }
+            to { box-shadow: 0 0 30px rgba(79, 70, 229, 0.4); border-color: rgba(79, 70, 229, 0.8); }
+        }
+
+        /* Updated Roadmap Custom Styles */
+        .roadmap-container {
+            position: relative;
+            background-color: #030303; /* Obsidian black */
+        }
+        .roadmap-line-container {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            transform: translateX(-50%);
+            background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 100%);
+            background-size: 1px 20px;
+            z-index: 1;
+        }
+        .roadmap-line-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background-image: linear-gradient(to bottom, #4F46E5, #699cff);
+            box-shadow: 0 0 15px #4F46E5;
+            transition: height 0.2s ease-out;
+            z-index: 2;
+        }
+        .sui-style-card {
+            background: #080808;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sui-style-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .sui-style-card.active {
+            border-color: rgba(79, 70, 229, 0.4);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(79, 70, 229, 0.05);
+        }
+        .technical-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            text-transform: uppercase;
+            color: #888;
+        }
+        .active .technical-tag {
+            border-color: rgba(79, 70, 229, 0.3);
+            color: #4F46E5;
+        }
+
+        /* Abstract Wireframe Visuals */
+        .wireframe-box {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: rgba(255,255,255,0.02);
+            border: 1px dashed rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .wireframe-element {
+            position: absolute;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            transition: all 1s ease;
+        }
+        .active .wireframe-element {
+            border-color: rgba(79, 70, 229, 0.6);
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.2);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(79, 70, 229, 0.7); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 3s infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
+<!-- Sticky NavBar -->
+<nav class="fixed top-0 w-full z-[100] bg-black/80 backdrop-blur-xl border-b border-white/5">
+<div class="flex justify-between items-center w-full px-6 md:px-12 py-5 max-w-[1920px] mx-auto">
+<div class="text-xl font-black text-white tracking-tighter font-headline uppercase">WYLER CHAIN</div>
+<div class="hidden md:flex items-center space-x-10">
+<a class="text-gray-300 hover:text-white font-headline uppercase tracking-widest font-bold text-[10px] transition-all hover:tracking-[0.2em]" href="#infrastructure">Infrastructure</a>
+<a class="text-gray-300 hover:text-white font-headline uppercase tracking-widest font-bold text-[10px] transition-all hover:tracking-[0.2em]" href="#features">Performance</a>
+<a class="text-gray-300 hover:text-white font-headline uppercase tracking-widest font-bold text-[10px] transition-all hover:tracking-[0.2em]" href="#ecosystem">Ecosystem</a>
+<a class="text-gray-300 hover:text-white font-headline uppercase tracking-widest font-bold text-[10px] transition-all hover:tracking-[0.2em]" href="#roadmap">Roadmap</a>
+</div>
+<button class="bg-primary text-white px-6 py-2.5 font-headline font-bold uppercase tracking-widest text-[10px] active:scale-95 transition-all hover:shadow-[0_0_20px_rgba(79,70,229,0.5)]">
+                Launch App
+            </button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center pt-24 overflow-hidden mesh-gradient">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 monolith-gradient"></div>
+<div class="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full animate-pulse opacity-20"></div>
+<div class="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 bg-primary rounded-full animate-ping opacity-10"></div>
+<div class="absolute top-1/2 right-10 w-1 h-1 bg-secondary rounded-full animate-pulse opacity-30 delay-1000"></div>
+</div>
+<div class="relative z-10 container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="text-left reveal">
+<div class="inline-flex items-center gap-3 mb-6 px-4 py-1.5 border border-primary/20 bg-primary/5">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-headline text-[10px] tracking-[0.2em] text-primary uppercase font-bold">Network Genesis Phase 2.0</span>
+</div>
+<h1 class="text-5xl md:text-7xl lg:text-8xl font-headline font-extrabold tracking-tighter text-white leading-[0.9] text-glow uppercase mb-8">
+                        The Infrastructure <br/>Web3 <span class="text-primary">Deserves</span>
+</h1>
+<p class="text-lg md:text-xl font-body font-normal text-on-surface-variant tracking-tight max-w-xl mb-12">
+                        Modular. Performant. Yours. Scalable execution with lightning fast finality and ultra-low fees.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-white text-black px-10 py-5 font-headline font-bold text-sm uppercase tracking-widest transition-all hover:bg-primary hover:text-white hover:shadow-[0_0_30px_rgba(79,70,229,0.5)]">
+                            Build on Wyler
+                        </button>
+<a class="border border-white/20 px-10 py-5 font-headline font-bold text-sm uppercase tracking-widest transition-all hover:bg-white/5 flex items-center justify-center" href="#roadmap">
+                            View Roadmap
+                        </a>
+</div>
+</div>
+<div class="relative flex justify-center items-center h-[500px] reveal delay-300">
+<div class="absolute inset-0 bg-primary/10 blur-[120px] rounded-full animate-pulse"></div>
+<div class="relative z-10 w-80 h-80 flex items-center justify-center animate-float logo-glow-pulse">
+<div class="w-full h-full border-[12px] border-primary/30 rounded-full flex items-center justify-center p-8">
+<div class="w-full h-full border-[8px] border-secondary/20 rounded-full flex items-center justify-center p-6">
+<div class="text-8xl font-black text-white font-headline select-none">W</div>
+</div>
+</div>
+<div class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full animate-ping"></div>
+<div class="absolute bottom-10 left-0 w-1.5 h-1.5 bg-secondary rounded-full animate-ping delay-700"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Strip -->
+<section class="relative py-12 bg-surface-container-lowest border-y border-white/5 reveal">
+<div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="flex flex-col items-center lg:items-start group">
+<span class="text-3xl font-headline font-bold text-white transition-all group-hover:text-primary">50+</span>
+<span class="text-[10px] font-headline text-on-surface-variant uppercase tracking-widest mt-1">Ecosystem Projects</span>
+</div>
+<div class="flex flex-col items-center lg:items-start group">
+<span class="text-3xl font-headline font-bold text-white transition-all group-hover:text-primary">2.1M</span>
+<span class="text-[10px] font-headline text-on-surface-variant uppercase tracking-widest mt-1">Transactions Processed</span>
+</div>
+<div class="flex flex-col items-center lg:items-start group">
+<span class="text-3xl font-headline font-bold text-white transition-all group-hover:text-primary">10,000</span>
+<span class="text-[10px] font-headline text-on-surface-variant uppercase tracking-widest mt-1">TPS Throughput</span>
+</div>
+<div class="flex flex-col items-center lg:items-start group">
+<span class="text-3xl font-headline font-bold text-white transition-all group-hover:text-primary">187</span>
+<span class="text-[10px] font-headline text-on-surface-variant uppercase tracking-widest mt-1">Active Validators</span>
+</div>
+</div>
+</section>
+<!-- Infrastructure Section -->
+<section class="py-32 px-6 max-w-[1400px] mx-auto" id="infrastructure">
+<div class="text-center mb-20 reveal">
+<span class="font-headline text-primary text-xs tracking-[0.4em] uppercase font-bold">Infrastructural Excellence</span>
+<h2 class="font-headline text-4xl md:text-5xl font-bold text-white mt-4 uppercase">Why Wyler Chain?</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="glass-card p-10 group reveal">
+<span class="material-symbols-outlined text-primary text-4xl mb-8 inline-block">payments</span>
+<h3 class="font-headline text-xl font-bold text-white uppercase mb-4">Ultra-low Costs</h3>
+<p class="text-sm text-on-surface-variant font-body leading-relaxed">Gas fees optimized for high-frequency applications, reaching near-zero costs for mass users.</p>
+</div>
+<div class="glass-card p-10 group reveal delay-100">
+<span class="material-symbols-outlined text-secondary text-4xl mb-8 inline-block">layers</span>
+<h3 class="font-headline text-xl font-bold text-white uppercase mb-4">Modular Flexibility</h3>
+<p class="text-sm text-on-surface-variant font-body leading-relaxed">A plug-and-play architecture allowing developers to customize execution and data availability layers.</p>
+</div>
+<div class="glass-card p-10 group reveal delay-200">
+<span class="material-symbols-outlined text-primary text-4xl mb-8 inline-block">verified_user</span>
+<h3 class="font-headline text-xl font-bold text-white uppercase mb-4">Battle-tested</h3>
+<p class="text-sm text-on-surface-variant font-body leading-relaxed">Leveraging Ethereum's base layer security combined with our advanced fraud-proof mechanisms.</p>
+</div>
+<div class="glass-card p-10 group reveal delay-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-8 inline-block">terminal</span>
+<h3 class="font-headline text-xl font-bold text-white uppercase mb-4">Developer First</h3>
+<p class="text-sm text-on-surface-variant font-body leading-relaxed">Full EVM compatibility with an enhanced suite of SDKs and automated deployment pipelines.</p>
+</div>
+</div>
+</section>
+<!-- Updated Roadmap Section -->
+<section class="roadmap-container py-32 overflow-hidden" id="roadmap">
+<div class="max-w-[1400px] mx-auto px-6 mb-32 relative z-10">
+<div class="text-center reveal">
+<span class="font-mono text-primary text-[10px] tracking-[0.4em] uppercase font-bold">Engineering / Future / Path</span>
+<h2 class="font-headline text-5xl md:text-7xl font-bold text-white mt-4 uppercase tracking-tighter">Strategic Roadmap</h2>
+</div>
+</div>
+<!-- Vertical Line -->
+<div class="roadmap-line-container">
+<div class="roadmap-line-fill" id="roadmap-line-fill"></div>
+</div>
+<div class="max-w-[1200px] mx-auto px-6 space-y-64 relative z-10">
+<!-- Step 01 -->
+<div class="roadmap-step grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" data-step="1">
+<div class="sui-style-card p-8 md:p-12 order-2 lg:order-1 reveal">
+<div class="flex items-center gap-4 mb-8">
+<span class="font-mono text-primary font-bold text-xs">01</span>
+<div class="h-px flex-1 bg-white/5"></div>
+<span class="technical-tag">L1 SETTLEMENT</span>
+<span class="technical-tag">MAINNET</span>
+</div>
+<span class="font-mono text-on-surface-variant text-[10px] tracking-widest uppercase mb-2 block">ARCHITECTURE LAYER</span>
+<h3 class="font-headline text-4xl font-bold text-white uppercase mb-6 tracking-tight leading-none">Genesis Protocol Activation</h3>
+<p class="text-on-surface-variant text-sm font-body leading-relaxed mb-8 max-w-md">Foundational network layer activation with core protocol governance and proof-of-stake consensus deployment.</p>
+<div class="flex flex-wrap gap-3">
+<span class="technical-tag">100 Validators</span>
+<span class="technical-tag">EVM Stable</span>
+</div>
+</div>
+<div class="relative h-[300px] order-1 lg:order-2 flex justify-center items-center reveal delay-100">
+<div class="wireframe-box group">
+<div class="wireframe-element w-40 h-40 rotate-45 border-primary/20 bg-primary/5 group-hover:scale-110 transition-transform duration-1000"></div>
+<div class="wireframe-element w-32 h-32 rotate-[15deg] border-white/10 group-hover:rotate-45 transition-transform duration-1000"></div>
+<div class="absolute inset-0 flex items-center justify-center font-mono text-[8px] text-primary/40 uppercase tracking-[0.5em] mt-32">CORE_LAYER_ENGAGED</div>
+</div>
+</div>
+</div>
+<!-- Step 02 -->
+<div class="roadmap-step grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" data-step="2">
+<div class="relative h-[300px] flex justify-center items-center reveal">
+<div class="wireframe-box group">
+<div class="wireframe-element w-48 h-12 border-secondary/20 bg-secondary/5 group-hover:translate-y-[-20px] transition-all"></div>
+<div class="wireframe-element w-48 h-12 translate-y-8 border-secondary/20 group-hover:translate-y-[20px] transition-all"></div>
+<div class="wireframe-element w-48 h-12 translate-y-16 border-secondary/20"></div>
+<div class="absolute inset-0 flex items-center justify-center font-mono text-[8px] text-secondary/40 uppercase tracking-[0.5em] mt-32">CROSS_CHAIN_UP</div>
+</div>
+</div>
+<div class="sui-style-card p-8 md:p-12 reveal delay-100">
+<div class="flex items-center gap-4 mb-8">
+<span class="font-mono text-secondary font-bold text-xs">02</span>
+<div class="h-px flex-1 bg-white/5"></div>
+<span class="technical-tag">LIQUIDITY HUB</span>
+<span class="technical-tag">Q3 2026</span>
+</div>
+<span class="font-mono text-on-surface-variant text-[10px] tracking-widest uppercase mb-2 block">ECOSYSTEM EXPANSION</span>
+<h3 class="font-headline text-4xl font-bold text-white uppercase mb-6 tracking-tight leading-none">Modular Interop Layer</h3>
+<p class="text-on-surface-variant text-sm font-body leading-relaxed mb-8 max-w-md">Bridging fragmented liquidity through the Wyler Gateway, enabling seamless asset flows between Ethereum and L3 environments.</p>
+<div class="flex flex-wrap gap-3">
+<span class="technical-tag">Native Bridge</span>
+<span class="technical-tag">Omnichain</span>
+</div>
+</div>
+</div>
+<!-- Step 03 -->
+<div class="roadmap-step grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pb-32" data-step="3">
+<div class="sui-style-card p-8 md:p-12 order-2 lg:order-1 reveal">
+<div class="flex items-center gap-4 mb-8">
+<span class="font-mono text-primary font-bold text-xs">03</span>
+<div class="h-px flex-1 bg-white/5"></div>
+<span class="technical-tag">VERIFIABLE AI</span>
+<span class="technical-tag">RESEARCH</span>
+</div>
+<span class="font-mono text-on-surface-variant text-[10px] tracking-widest uppercase mb-2 block">COMPUTE LAYER</span>
+<h3 class="font-headline text-4xl font-bold text-white uppercase mb-6 tracking-tight leading-none">Neural Execution Engine</h3>
+<p class="text-on-surface-variant text-sm font-body leading-relaxed mb-8 max-w-md">Introduction of specialized ZK-opcodes for verifiable AI model inference directly on the execution layer.</p>
+<div class="flex flex-wrap gap-3">
+<span class="technical-tag">250K TPS</span>
+<span class="technical-tag">L3 NATIVE</span>
+</div>
+</div>
+<div class="relative h-[300px] order-1 lg:order-2 flex justify-center items-center reveal delay-100">
+<div class="wireframe-box group">
+<div class="absolute w-24 h-24 border border-primary/40 rounded-full animate-ping opacity-20"></div>
+<div class="wireframe-element w-24 h-24 border-primary/60 bg-primary/10 flex items-center justify-center font-headline font-bold text-2xl text-white">W</div>
+<div class="absolute inset-0 flex items-center justify-center font-mono text-[8px] text-primary/40 uppercase tracking-[0.5em] mt-32">COMPUTE_FINAL_FORM</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-32 px-6" id="features">
+<div class="max-w-[1400px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 reveal">
+<div class="max-w-2xl">
+<span class="font-headline text-primary text-xs tracking-[0.4em] uppercase font-bold">Technical Benchmarks</span>
+<h2 class="font-headline text-5xl font-bold text-white mt-4 uppercase">Unmatched Performance</h2>
+</div>
+<p class="text-on-surface-variant font-body max-w-sm text-sm uppercase tracking-wider leading-relaxed">
+                        Engineered for sub-millisecond precision and planetary scale throughput.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="glass-card p-10 border-t border-l border-white/5 reveal">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary">speed</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-white uppercase mb-4">Sub-second Finality</h3>
+<p class="text-on-surface-variant text-sm font-body">Instant transaction confirmation for real-time applications and gaming.</p>
+</div>
+<div class="glass-card p-10 border-t border-l border-white/5 reveal delay-100">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary">savings</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-white uppercase mb-4">Gas Fees &lt; $0.0001</h3>
+<p class="text-on-surface-variant text-sm font-body">Optimized compression algorithms making every transaction virtually free.</p>
+</div>
+<div class="glass-card p-10 border-t border-l border-white/5 reveal delay-200">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary">integration_instructions</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-white uppercase mb-4">EVM-Compatible</h3>
+<p class="text-on-surface-variant text-sm font-body">Deploy Solidity contracts instantly with full tooling support (Foundry, Hardhat).</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Token Utility -->
+<section class="py-32 relative overflow-hidden bg-[#050505]">
+<div class="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1 reveal">
+<span class="font-headline text-primary text-xs tracking-[0.4em] uppercase font-bold">Economy</span>
+<h2 class="font-headline text-5xl font-bold text-white mt-4 uppercase mb-12">$WYLER Token Utility</h2>
+<div class="space-y-8">
+<div class="flex gap-6 items-start group">
+<div class="w-1.5 h-1.5 rounded-full bg-primary mt-2 group-hover:scale-[2] transition-transform"></div>
+<div>
+<h4 class="font-headline font-bold text-white uppercase text-sm mb-1 transition-colors group-hover:text-primary">Transaction Gas</h4>
+<p class="text-on-surface-variant text-sm font-body">Powering every action across the network with a deflationary burn mechanism.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start group">
+<div class="w-1.5 h-1.5 rounded-full bg-primary mt-2 group-hover:scale-[2] transition-transform"></div>
+<div>
+<h4 class="font-headline font-bold text-white uppercase text-sm mb-1 transition-colors group-hover:text-primary">Network Security</h4>
+<p class="text-on-surface-variant text-sm font-body">Staking rewards for validators maintaining the integrity of the WVM.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 flex justify-center items-center reveal delay-300">
+<div class="relative w-80 h-80 flex items-center justify-center logo-glow-pulse">
+<div class="absolute inset-0 rounded-full border border-primary/20 animate-[spin_20s_linear_infinite]"></div>
+<div class="absolute inset-8 rounded-full border border-primary/40 animate-[spin_15s_linear_infinite_reverse]"></div>
+<div class="relative z-10 w-32 h-32 bg-primary flex items-center justify-center text-4xl font-black text-white font-headline shadow-[0_0_50px_rgba(79,70,229,0.5)]">W</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Builder CTA -->
+<section class="relative py-48 bg-surface overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 -z-10 animate-pulse"></div>
+<div class="max-w-[1200px] mx-auto px-6 text-center reveal">
+<h2 class="font-headline text-5xl md:text-7xl font-bold text-white mb-8 uppercase tracking-tighter">Join the Wyler <br/><span class="text-primary">Ecosystem</span></h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto mb-16 text-lg">Build the next generation of decentralized applications on the most performant L3 infrastructure ever created.</p>
+<div class="flex flex-wrap justify-center gap-6">
+<button class="bg-primary text-white px-12 py-6 font-headline font-bold text-sm uppercase tracking-[0.2em] transition-all hover:scale-110 animate-pulse-glow">
+                        Developer Docs
+                    </button>
+<button class="border border-white/10 px-12 py-6 font-headline font-bold text-sm uppercase tracking-[0.2em] transition-all hover:scale-110 hover:bg-white/5 hover:border-white/30">
+                        Join Discord
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-white/5 bg-black pt-24 pb-12">
+<div class="max-w-[1920px] mx-auto px-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24 reveal">
+<div class="col-span-1 md:col-span-2">
+<div class="text-2xl font-black text-white font-headline uppercase tracking-tighter mb-8 transition-all hover:tracking-widest">WYLER CHAIN</div>
+<p class="text-on-surface-variant max-w-sm text-sm font-body mb-8">The digital monolith for modular scaling. High-performance L3 execution secured by Ethereum.</p>
+</div>
+<div>
+<h5 class="font-headline font-bold text-white uppercase text-[10px] tracking-widest mb-8">Ecosystem</h5>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-white text-xs uppercase transition-colors" href="#">Documentation</a></li>
+<li><a class="text-on-surface-variant hover:text-white text-xs uppercase transition-colors" href="#">Explorer</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-headline font-bold text-white uppercase text-[10px] tracking-widest mb-8">Company</h5>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-white text-xs uppercase transition-colors" href="#">About Us</a></li>
+<li><a class="text-on-surface-variant hover:text-white text-xs uppercase transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-12">
+<div class="text-[10px] tracking-wider uppercase text-gray-500 mb-4 md:mb-0">© 2024 WYLER CHAIN. THE DIGITAL MONOLITH.</div>
+<div class="flex gap-10">
+<a class="font-['Inter'] text-[10px] tracking-wider uppercase text-gray-500 hover:text-white transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Intersection Observer for Reveal Animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach((element) => {
+        revealObserver.observe(element);
+    });
+
+    // Updated Roadmap Scrollytelling Logic
+    const roadmapContainer = document.querySelector('.roadmap-container');
+    const lineFill = document.getElementById('roadmap-line-fill');
+    const steps = document.querySelectorAll('.roadmap-step');
+
+    const updateRoadmapStyles = () => {
+        const rect = roadmapContainer.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Progress Line logic
+        let progress = (viewportHeight - rect.top) / rect.height;
+        progress = Math.min(Math.max(progress - 0.2, 0), 1); // Adjust offset to start/end naturally
+        lineFill.style.height = `${progress * 100}%`;
+
+        // Card Activation logic
+        steps.forEach((step) => {
+            const stepRect = step.getBoundingClientRect();
+            const card = step.querySelector('.sui-style-card');
+            
+            // Activate when step reaches 60% of viewport
+            if (stepRect.top < viewportHeight * 0.6) {
+                card.classList.add('active');
+                step.classList.add('active');
+            } else {
+                card.classList.remove('active');
+                step.classList.remove('active');
+            }
+        });
+    };
+
+    window.addEventListener('scroll', updateRoadmapStyles);
+    window.addEventListener('resize', updateRoadmapStyles);
+    updateRoadmapStyles(); // Init call
+</script>
+</body></html>
