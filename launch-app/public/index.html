@@ -1008,20 +1008,21 @@
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+        gap: 24px;
       }
 
       .hero-content {
-        align-items: center;
+        align-items: flex-start;
       }
 
       .hero-chips {
-        justify-content: center;
+        justify-content: flex-start;
       }
 
       .hero-ctas {
-        justify-content: center;
+        justify-content: flex-start;
       }
 
       .about-grid {
@@ -1777,22 +1778,22 @@
             </div>
 
             <h1
-              class="font-headline text-5xl sm:text-6xl md:text-8xl font-bold leading-tight uppercase tracking-tight mb-6 relative z-10 sui-text-shimmer drop-shadow-[0_0_20px_rgba(79,70,229,0.3)]">
+              class="font-headline text-3xl sm:text-5xl md:text-8xl font-bold leading-tight uppercase tracking-tight mb-4 sm:mb-6 relative z-10 sui-text-shimmer drop-shadow-[0_0_20px_rgba(79,70,229,0.3)]">
               Wyler Chain
             </h1>
 
-            <p class="font-body text-appTextMuted text-base md:text-lg max-w-lg mb-10 relative z-10">
+            <p class="font-body text-appTextMuted text-[10px] sm:text-sm md:text-lg max-w-lg mb-6 sm:mb-10 relative z-10 leading-relaxed">
               A next-generation Layer 3 blockchain built on Arbitrum. Enabling zero gas fees, seamless social login, and
               scalable dApp deployment.
             </p>
 
-            <div class="flex flex-wrap items-center gap-4 relative z-10">
+            <div class="flex flex-col sm:flex-row flex-wrap items-start gap-2 sm:gap-4 relative z-10">
               <a href="/app"
-                class="font-headline text-xs font-bold uppercase tracking-[0.2em] text-appText bg-primary px-8 py-4 rounded-sm hover:bg-white hover:text-primary transition-colors shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] border border-primary/50">
+                class="font-headline text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-appText bg-primary px-4 py-3 sm:px-8 sm:py-4 rounded-sm hover:bg-white hover:text-primary transition-colors shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] border border-primary/50 text-center w-full sm:w-auto">
                 Launch App
               </a>
               <a href="#roadmap"
-                class="font-headline text-xs font-bold uppercase tracking-[0.2em] text-appText/70 px-8 py-4 rounded-sm border border-appBorder/10 hover:border-white/40 hover:text-appText transition-all duration-300 bg-appText/5 backdrop-blur-md">
+                class="font-headline text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-appText/70 px-4 py-3 sm:px-8 sm:py-4 rounded-sm border border-appBorder/10 hover:border-white/40 hover:text-appText transition-all duration-300 bg-appText/5 backdrop-blur-md text-center w-full sm:w-auto">
                 Explore Docs
               </a>
             </div>
