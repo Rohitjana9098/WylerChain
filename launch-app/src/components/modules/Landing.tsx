@@ -77,6 +77,7 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
 
 // ─── Main Landing ─────────────────────────────────────────────────────────────
 export default function Landing() {
+  const router = useRouter();
   const { setView } = useAuth();
   const [loaded, setLoaded] = useState(false);
 

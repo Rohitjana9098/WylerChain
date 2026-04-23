@@ -32,7 +32,7 @@ export default function StakingModule() {
     setMounted(true);
   }, []);
 
-  const walletBalanceNum = mounted && isConnected && balance ? Number(balance.formatted) : 0;
+  const walletBalanceNum = mounted && isConnected && balance ? Number(balance.value) / (10 ** balance.decimals) : 0;
   const displayBalance = walletBalanceNum.toFixed(2);
   const usdValue = (walletBalanceNum * 0.3).toFixed(2);
   const mockUnclaimed = (walletBalanceNum * 0.05).toFixed(2);

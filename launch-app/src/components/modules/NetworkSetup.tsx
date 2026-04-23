@@ -250,14 +250,14 @@ export default function NetworkSetup() {
                 <div key={idx} className="bg-surface/50 border border-border/30 p-4 rounded-2xl flex items-center gap-4 group hover:border-primary/20 transition-all">
                   <div className={`flex-shrink-0 ${
                     item.status === "completed" ? "text-green-500" :
-                    item.status === "in-progress" ? "text-primary animate-pulse" : "text-muted"
+                    (item.status as string) === "in-progress" ? "text-primary animate-pulse" : "text-muted"
                   }`}>
                     {item.status === "completed" ? <CheckCircle2 size={18} /> :
-                     item.status === "in-progress" ? <CircleDashed size={18} /> : <div className="w-4 h-4 rounded-full border-2 border-current opacity-20" />}
+                     (item.status as string) === "in-progress" ? <CircleDashed size={18} /> : <div className="w-4 h-4 rounded-full border-2 border-current opacity-20" />}
                   </div>
                   <span className={`text-[10px] font-bold uppercase tracking-widest ${
                     item.status === "completed" ? "text-white/80" : 
-                    item.status === "in-progress" ? "text-primary" : "text-white/40"
+                    (item.status as string) === "in-progress" ? "text-primary" : "text-white/40"
                   }`}>
                     {item.task}
                   </span>

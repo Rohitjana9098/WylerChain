@@ -58,7 +58,7 @@ export default function WalletModule() {
 
   // Calculate fiat value based on the fixed token price shown in the KPI cards
   const activeTokenPrice = 0.30;
-  const rawBalance = ethBalance ? Number(ethBalance.formatted) : 0;
+  const rawBalance = ethBalance ? Number(ethBalance.value) / (10 ** ethBalance.decimals) : 0;
   const formattedBalance = rawBalance > 0 
     ? rawBalance.toLocaleString(undefined, { maximumFractionDigits: 4, minimumFractionDigits: 2 }) 
     : "0.00";
