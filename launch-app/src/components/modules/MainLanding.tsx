@@ -261,9 +261,8 @@ export default function MainLanding() {
                     <h2 className="font-headline text-3xl font-bold uppercase mb-6 text-white">Wyler Chain</h2>
                     <div className="flex flex-wrap justify-center gap-10 mb-16 font-headline text-[10px] uppercase font-bold tracking-[0.4em] text-gray-500">
                         <a href="https://wylerchain.com" className="hover:text-white transition-colors">Website</a>
-                        <a href="https://x.com/wylerchain?s=21" className="hover:text-white transition-colors">Twitter (X)</a>
+                        <a href="https://x.com/wylerchain?s=21" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Follow on X</a>
                         <a href="https://t.me/wylerchain" className="hover:text-white transition-colors">Telegram</a>
-                        <a href="#" className="hover:text-white transition-colors">Discord</a>
                     </div>
                     <div className="w-full h-px bg-white/5 mb-8"></div>
                     <p className="text-gray-700 text-[10px] uppercase tracking-[0.5em]">© 2026 Wyler Chain. Built for the Modular Future.</p>

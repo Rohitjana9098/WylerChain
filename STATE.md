@@ -21,8 +21,8 @@
 - [x] **Internal QA**: Generated comprehensive launch checklist.
 - [x] **Legacy Cleanup**: Removed outdated MVP Interactive Sandbox and Mockup screens from `index.html`.
 - [x] **Branding**: Standardized "Wyler Chain" typography across legacy and Next.js platforms.
-- [x] **Community Integration**: Added "Join Telegram" buttons to CTA sections across landing page versions.
 - [x] **Production Planning**: Drafted complete Nginx reverse proxy configuration for unified deployment (`nginx_proxy_guide.md`).
+- [x] **Social Links**: Updated "Follow on X" links and removed "Discord" across all landing components and static pages.
 
 ## Pending Tasks
 - [ ] Connect `StitchMCP` to the application for live account data.
