@@ -23,6 +23,7 @@
 - [x] **Branding**: Standardized "Wyler Chain" typography across legacy and Next.js platforms.
 - [x] **Production Planning**: Drafted complete Nginx reverse proxy configuration for unified deployment (`nginx_proxy_guide.md`).
 - [x] **Social Links**: Updated "Follow on X" links and removed "Discord" across all landing components and static pages.
+- [x] **Mobile Responsiveness**: Replaced the overcrowded mobile header layout with an optimized top navbar and added a premium, glowing mobile bottom navigation bar with Framer Motion transitions.
 
 ## Pending Tasks
 - [ ] Connect `StitchMCP` to the application for live account data.
