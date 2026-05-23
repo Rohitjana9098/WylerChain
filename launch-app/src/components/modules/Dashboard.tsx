@@ -143,8 +143,7 @@ export default function Dashboard() {
                   onClick={() => setShowWalletModal(!showWalletModal)}
                   className="px-4 py-2 sm:px-6 sm:py-2.5 bg-indigo-600 rounded-full font-bold uppercase tracking-widest text-[9px] sm:text-[10px] text-white hover:bg-indigo-500 shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all cursor-pointer whitespace-nowrap"
                 >
-                  <span className="hidden sm:inline">Connect Wallet</span>
-                  <span className="inline sm:hidden">Connect</span>
+                  Connect Wallet
                 </button>
               ) : (
                 <div 
