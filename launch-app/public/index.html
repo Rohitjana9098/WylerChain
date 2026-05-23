@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -7,6 +7,8 @@
   <title>Wyler Chain | The Layer 3 Infrastructure for Modular Web3 Applications</title>
   <meta name="description"
     content="Wyler Chain delivers scalable execution, low-cost transactions, and builder-ready infrastructure for the next generation of Web3 products." />
+  <meta name="theme-color" content="#000000" />
+  <meta name="color-scheme" content="dark" />
 
   <!-- SEO & Open Graph Tags -->
   <meta property="og:title" content="Wyler Chain | High-Fidelity Layer 3 Prototype" />
@@ -39,6 +41,11 @@
     rel="stylesheet">
 
   <style>
+    html {
+      color-scheme: dark;
+      background-color: #000000;
+    }
+
     :root {
       --bg-app: #000000;
       --text-app: #ffffff;
@@ -67,22 +74,6 @@
       --glow-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
       --border-glass: 1px solid rgba(255, 255, 255, 0.1);
       --bg-glass: rgba(255, 255, 255, 0.03);
-    }
-
-    html.light {
-      --bg-app: #f8f9fa;
-      --text-app: #0e0e0e;
-      --text-muted: #5e5e5e;
-      --border-app: #000000;
-      --surface-darker: #e9ecef;
-      --surface-dark: #f1f3f5;
-      --surface-card: #ffffff;
-      --surface-main: #f8f9fa;
-      --text-rgb: 14, 14, 14;
-    }
-
-    html.light img.logo-img {
-      filter: invert(1);
     }
 
     * {
@@ -1520,9 +1511,9 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background: rgba(7, 14, 28, 0.9);
+      background: rgba(10, 10, 14, 0.95);
       backdrop-filter: blur(20px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       display: none;
       z-index: 1000;
     }
@@ -2960,7 +2951,7 @@
       function animate() {
         requestAnimationFrame(animate);
         ctx.clearRect(0, 0, width, height);
-        const isL = document.documentElement.classList.contains('light');
+        const isL = false;
         particles.forEach(p => {
           p.x += p.vx; p.y += p.vy;
           if (p.x < 0 || p.x > width) p.vx *= -1;
