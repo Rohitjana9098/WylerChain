@@ -14,7 +14,7 @@ import {
   Zap,
   ShieldCheck
 } from "lucide-react";
-import { useAccount, useBalance, useChainId, useSendTransaction, useWaitForTransactionReceipt } from "wagmi";
+import { useAccount, useBalance, useChainId, useSendTransaction, useWaitForTransactionReceipt, useConnect } from "wagmi";
 import { parseEther } from "viem";
 import Modal from "@/components/ui/Modal";
 import SpotlightCard from "@/components/ui/SpotlightCard";
@@ -40,6 +40,16 @@ export default function WalletModule() {
   const { address, isConnected } = useAccount();
   const currentChainId = useChainId();
   const isCorrectNetwork = currentChainId === NetworkConfig.chainIdDecimal;
+  const { connect, connectors } = useConnect();
+
+  const handleConnectWallet = () => {
+    const injected = connectors.find(c => c.id === 'injected' || c.id === 'metaMask');
+    if (injected) {
+      connect({ connector: injected });
+    } else if (connectors.length > 0) {
+      connect({ connector: connectors[0] });
+    }
+  };
 
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -113,46 +123,88 @@ export default function WalletModule() {
 
       {/* Main Balance Card */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <SpotlightCard className="lg:col-span-2 bg-gradient-to-br from-surface-highest to-surface-high border border-white/5 p-12 rounded-[40px] relative group shadow-2xl">
-          <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+        <SpotlightCard className="lg:col-span-2 bg-gradient-to-br from-surface-highest to-surface-high border border-white/5 p-12 rounded-[40px] relative group shadow-2xl overflow-hidden">
+          {/* Glowing Ambient Backdrop Orbs */}
+          <div className="absolute top-[-20%] left-[-10%] w-[300px] h-[300px] bg-indigo-600/10 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[350px] h-[350px] bg-purple-600/10 rounded-full blur-[120px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+          
+          <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
             <WalletIcon size={160} />
           </div>
           
-          <div className="relative z-10">
-            <p className="text-muted text-xs font-bold uppercase tracking-[0.2em] mb-4">Total Balance</p>
+          <div className="relative z-10 h-full flex flex-col justify-between">
+            <div>
+              <p className="text-muted text-xs font-bold uppercase tracking-[0.2em] mb-4">Total Balance</p>
+              
+              {!mounted ? (
+                <div className="mb-[76px] mt-4 flex flex-col gap-4">
+                   <div className="h-[72px] w-64 bg-white/5 animate-pulse rounded-2xl" />
+                   <div className="h-6 w-32 bg-white/5 animate-pulse rounded-lg" />
+                </div>
+              ) : !isConnected ? (
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 mt-2 mb-6">
+                  <div className="flex-1 text-left">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 mb-4 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-[9px] font-mono tracking-widest uppercase animate-pulse">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                      Access Restricted
+                    </span>
+                    
+                    <h3 className="text-3xl sm:text-4xl font-space font-extrabold text-white tracking-tight uppercase mb-3 leading-tight">
+                      Connect Your Wallet <br />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-blue-400 font-bold">To Unlock Balance</span>
+                    </h3>
+                    
+                    <p className="text-gray-400 text-sm max-w-md mb-8 leading-relaxed">
+                      Connect securely to the Wyler Chain L3 Testnet to view your balances, monitor live yields, and stake assets.
+                    </p>
+
+                    <button
+                      onClick={handleConnectWallet}
+                      className="group/btn relative px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 rounded-2xl font-bold uppercase tracking-widest text-[10px] text-white hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-all duration-300 transform active:scale-95 cursor-pointer border border-indigo-500/40 flex items-center gap-3 overflow-hidden"
+                    >
+                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                      <WalletIcon size={14} className="relative z-10 text-white" />
+                      <span className="relative z-10">Connect Secure Wallet</span>
+                      <ArrowRight size={12} className="relative z-10 text-white group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+
+                  {/* Cyber Orbital Core Graphic */}
+                  <div className="relative w-40 h-40 shrink-0 flex items-center justify-center group/orb hidden md:flex">
+                    <div className="absolute inset-0 rounded-full border border-dashed border-purple-500/20 animate-[spin_40s_linear_infinite] group-hover/orb:border-purple-500/40 transition-colors" />
+                    <div className="absolute inset-4 rounded-full border border-double border-indigo-500/30 animate-[spin_20s_linear_infinite_reverse] group-hover/orb:border-indigo-500/50" />
+                    <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-indigo-500/5 via-purple-500/0 to-transparent border border-white/5 animate-pulse" />
+                    <div className="absolute w-24 h-24 bg-gradient-to-br from-purple-600/20 to-indigo-600/20 blur-[30px] rounded-full group-hover/orb:scale-125 transition-transform duration-700" />
+
+                    <div className="absolute w-20 h-20 rounded-3xl bg-gradient-to-b from-white/[0.05] to-[#0a0a0f] border border-white/10 flex items-center justify-center shadow-2xl relative z-10 transition-all duration-500 group-hover/orb:border-purple-500/40 group-hover/orb:scale-105">
+                      <div className="absolute inset-0.5 rounded-[22px] bg-gradient-to-b from-white/10 to-transparent opacity-20 pointer-events-none" />
+                      <WalletIcon size={32} className="text-purple-400 group-hover/orb:text-purple-300 transition-colors filter drop-shadow-[0_0_12px_rgba(168,85,247,0.4)]" />
+                    </div>
+                  </div>
+                </div>
+              ) : !isCorrectNetwork ? (
+                <div className="mb-[76px] mt-4">
+                   <p className="text-4xl font-space font-bold text-orange-500">Wrong Network</p>
+                   <p className="text-sm text-orange-500/70 mt-2">Please switch to WylerChain Testnet</p>
+                </div>
+              ) : (
+                <>
+                  <h3 className="text-7xl font-space font-bold mb-6 tracking-tighter flex items-center gap-4">
+                    {isBalanceLoading ? (
+                      <Loader2 size={64} className="animate-spin text-primary" />
+                    ) : (
+                      formattedBalance
+                    )}
+                    <span className="text-primary-dim">WYLR</span>
+                  </h3>
+                  <p className="text-muted text-xl font-medium mb-10 flex items-center gap-3">
+                    ≈ {fiatValue} <span className="text-xs text-green-500 font-bold bg-green-500/10 px-2 py-0.5 rounded-full">+12.4%</span>
+                  </p>
+                </>
+              )}
+            </div>
             
-            {!mounted ? (
-              <div className="mb-[76px] mt-4 flex flex-col gap-4">
-                 <div className="h-[72px] w-64 bg-white/5 animate-pulse rounded-2xl" />
-                 <div className="h-6 w-32 bg-white/5 animate-pulse rounded-lg" />
-              </div>
-            ) : !isConnected ? (
-              <div className="mb-[76px] mt-4">
-                <p className="text-4xl font-space font-bold text-muted">Connect Wallet Required</p>
-                <p className="text-sm text-muted mt-2">Connect to WylerChain Testnet to view balance</p>
-              </div>
-            ) : !isCorrectNetwork ? (
-              <div className="mb-[76px] mt-4">
-                 <p className="text-4xl font-space font-bold text-orange-500">Wrong Network</p>
-                 <p className="text-sm text-orange-500/70 mt-2">Please switch to WylerChain Testnet</p>
-              </div>
-            ) : (
-              <>
-                <h3 className="text-7xl font-space font-bold mb-6 tracking-tighter flex items-center gap-4">
-                  {isBalanceLoading ? (
-                    <Loader2 size={64} className="animate-spin text-primary" />
-                  ) : (
-                    formattedBalance
-                  )}
-                  <span className="text-primary-dim">WYLR</span>
-                </h3>
-                <p className="text-muted text-xl font-medium mb-10 flex items-center gap-3">
-                  ≈ {fiatValue} <span className="text-xs text-green-500 font-bold bg-green-500/10 px-2 py-0.5 rounded-full">+12.4%</span>
-                </p>
-              </>
-            )}
-            
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mt-4">
               <span className="text-[10px] font-mono font-bold text-muted bg-black/50 border border-white/10 px-4 py-2 rounded-full tracking-wider min-w-[120px] inline-flex justify-center items-center h-[34px]">
                 {!mounted ? <div className="h-2 w-16 bg-white/20 animate-pulse rounded-full" /> : address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "Disconnected"}
               </span>
@@ -172,8 +224,8 @@ export default function WalletModule() {
 
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-4 h-full">
-            <WalletAction icon={<ArrowUpRight />} label="Send" onClick={() => setIsSendOpen(true)} />
-            <WalletAction icon={<ArrowDownLeft />} label="Receive" onClick={() => setIsReceiveOpen(true)} />
+            <WalletAction icon={<ArrowUpRight size={22} />} label="Send" onClick={() => setIsSendOpen(true)} theme="purple" />
+            <WalletAction icon={<ArrowDownLeft size={22} />} label="Receive" onClick={() => setIsReceiveOpen(true)} theme="blue" />
           </div>
         </div>
       </div>
@@ -376,16 +428,53 @@ export default function WalletModule() {
   );
 }
 
-function WalletAction({ icon, label, onClick }: { icon: React.ReactNode, label: string, onClick?: () => void }) {
+function WalletAction({ 
+  icon, 
+  label, 
+  onClick, 
+  theme = "purple" 
+}: { 
+  icon: React.ReactNode, 
+  label: string, 
+  onClick?: () => void,
+  theme?: "purple" | "blue"
+}) {
+  const glowClass = theme === "purple" 
+    ? "hover:shadow-[0_0_30px_rgba(108,92,231,0.15)] hover:border-purple-500/30" 
+    : "hover:shadow-[0_0_30px_rgba(37,99,235,0.15)] hover:border-blue-500/30";
+
+  const iconBg = theme === "purple"
+    ? "bg-purple-500/10 border-purple-500/20 text-purple-400 group-hover:bg-purple-500/20 group-hover:text-purple-300"
+    : "bg-blue-500/10 border-blue-500/20 text-blue-400 group-hover:bg-blue-500/20 group-hover:text-blue-300";
+
+  const translateAnim = theme === "purple"
+    ? "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+    : "group-hover:-translate-x-0.5 group-hover:translate-y-0.5";
+
   return (
     <button 
       onClick={onClick}
-      className="flex flex-col items-center justify-center gap-3 bg-surface border border-border/50 rounded-3xl hover:border-primary/50 transition-all hover:bg-surface-high group"
+      className={`flex flex-col items-center justify-center gap-4 bg-gradient-to-b from-white/[0.02] to-transparent border border-white/5 rounded-[32px] transition-all duration-500 hover:bg-white/[0.01] cursor-pointer group relative overflow-hidden p-6 ${glowClass}`}
     >
-      <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-        {icon}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/[0.01] via-transparent to-transparent opacity-60 pointer-events-none" />
+      
+      <div className={`absolute top-0 left-0 w-8 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${theme === "purple" ? "bg-purple-500" : "bg-blue-500"}`} />
+      <div className={`absolute top-0 left-0 w-[2px] h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${theme === "purple" ? "bg-purple-500" : "bg-blue-500"}`} />
+
+      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all duration-500 shadow-inner ${iconBg}`}>
+        <div className={`transition-transform duration-300 ${translateAnim}`}>
+          {icon}
+        </div>
       </div>
-      <span className="text-sm font-bold tracking-wide">{label}</span>
+      
+      <div className="flex flex-col items-center text-center">
+        <span className="text-sm font-space font-bold tracking-wider uppercase text-gray-300 group-hover:text-white transition-colors">
+          {label}
+        </span>
+        <span className="text-[9px] font-mono tracking-widest text-gray-500 uppercase mt-0.5 group-hover:text-gray-400 transition-colors">
+          {label === "Send" ? "Transfer assets" : "Receive funds"}
+        </span>
+      </div>
     </button>
   );
 }
