@@ -80,16 +80,16 @@ export default function Dashboard() {
       <PlexusBackground />
 
       {/* Top Navbar */}
-      <header className="sticky top-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 px-6 h-20">
+      <header className="sticky top-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 px-4 sm:px-6 h-20">
         <div className="max-w-[1600px] mx-auto h-full flex items-center justify-between relative z-10">
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-4 sm:gap-10">
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.location.reload()}>
               <img src="/LOGO/wyler_glow_logo.png" alt="Wyler" className="h-10 w-auto" />
               <span className="font-headline font-bold uppercase text-xs tracking-[0.3em] hidden sm:block">Wyler Chain</span>
             </div>
             
             <nav 
-              className="flex overflow-x-auto hide-scrollbar lg:overflow-visible items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5 relative max-w-[55vw] sm:max-w-[65vw] lg:max-w-none"
+              className="hidden md:flex overflow-x-auto hide-scrollbar lg:overflow-visible items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5 relative max-w-[55vw] sm:max-w-[65vw] lg:max-w-none"
               onMouseLeave={() => setHoveredTab(null)}
             >
               {TABS.map((tab) => (
@@ -128,29 +128,30 @@ export default function Dashboard() {
             </nav>
           </div>
 
-          <div className="flex items-center gap-4">
-            <button className="p-2.5 text-gray-500 hover:text-white hover:bg-white/5 rounded-full transition-all">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <button className="p-2 sm:p-2.5 text-gray-500 hover:text-white hover:bg-white/5 rounded-full transition-all">
               <Bell size={18} />
             </button>
             
-            <div className="h-8 w-[1px] bg-white/10 mx-2" />
+            <div className="h-8 w-[1px] bg-white/10 mx-1 sm:mx-2 hidden sm:block" />
 
             <div className="relative">
               {!mounted ? (
-                <div className="h-9 w-[130px] bg-white/5 animate-pulse rounded-full" />
+                <div className="h-9 w-[100px] sm:w-[130px] bg-white/5 animate-pulse rounded-full" />
               ) : !isConnected ? (
                 <button 
                   onClick={() => setShowWalletModal(!showWalletModal)}
-                  className="px-6 py-2.5 bg-indigo-600 rounded-full font-bold uppercase tracking-widest text-[10px] text-white hover:bg-indigo-500 shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all cursor-pointer"
+                  className="px-4 py-2 sm:px-6 sm:py-2.5 bg-indigo-600 rounded-full font-bold uppercase tracking-widest text-[9px] sm:text-[10px] text-white hover:bg-indigo-500 shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all cursor-pointer whitespace-nowrap"
                 >
-                  Connect Wallet
+                  <span className="hidden sm:inline">Connect Wallet</span>
+                  <span className="inline sm:hidden">Connect</span>
                 </button>
               ) : (
                 <div 
                   onClick={() => setShowWalletModal(!showWalletModal)} 
-                  className="flex items-center gap-3 bg-white/5 p-1.5 pr-4 rounded-full border border-white/5 hover:border-indigo-500/50 transition-all cursor-pointer group"
+                  className="flex items-center gap-2 sm:gap-3 bg-white/5 p-1 sm:p-1.5 sm:pr-4 rounded-full border border-white/5 hover:border-indigo-500/50 transition-all cursor-pointer group"
                 >
-                  <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-[10px] font-bold shadow-[0_0_15px_rgba(79,70,229,0.3)] text-white">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-indigo-600 flex items-center justify-center text-[9px] sm:text-[10px] font-bold shadow-[0_0_15px_rgba(79,70,229,0.3)] text-white">
                     WC
                   </div>
                   <div className="hidden sm:block text-left">
@@ -171,7 +172,10 @@ export default function Dashboard() {
                       )}
                     </div>
                   </div>
-                  <ChevronDown size={14} className="text-gray-600" />
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-gray-300 block sm:hidden pr-1">
+                    {address ? `${address.slice(0, 4)}...${address.slice(-2)}` : ""}
+                  </span>
+                  <ChevronDown size={14} className="text-gray-600 hidden sm:block" />
                 </div>
               )}
 
@@ -180,7 +184,7 @@ export default function Dashboard() {
 
             <button 
               onClick={() => { disconnect(); logout(); window.location.href = '/'; }}
-              className="p-2.5 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-all ml-2"
+              className="p-2 sm:p-2.5 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-full transition-all ml-1 sm:ml-2 hidden sm:block"
               title="Exit Dashboard"
             >
               <LogOut size={18} />
@@ -191,7 +195,7 @@ export default function Dashboard() {
 
 
       {/* Main Content Area */}
-      <main className="flex-1 p-6 lg:p-10 transition-all relative z-10">
+      <main className="flex-1 p-6 pb-24 md:pb-6 lg:p-10 transition-all relative z-10">
         <div className="max-w-[1400px] mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
@@ -353,6 +357,36 @@ export default function Dashboard() {
           </>
         )}
       </AnimatePresence>
+
+      {/* Bottom Navigation Bar for Mobile */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-t border-white/5 flex justify-around items-center py-2.5 px-4 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+        {TABS.map((tab) => {
+          const Icon = tab.icon;
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setTab(tab.id)}
+              className="flex flex-col items-center gap-1 py-1 px-3 relative transition-all"
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="mobile-nav-active-glow"
+                  className="absolute -top-2.5 w-10 h-1 bg-indigo-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.8)]"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+              <Icon 
+                size={18} 
+                className={`transition-colors ${isActive ? "text-indigo-500 filter drop-shadow-[0_0_5px_rgba(99,102,241,0.5)]" : "text-gray-500"}`} 
+              />
+              <span className={`text-[8px] font-bold uppercase tracking-widest transition-colors ${isActive ? "text-white" : "text-gray-500"}`}>
+                {tab.label}
+              </span>
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 }
