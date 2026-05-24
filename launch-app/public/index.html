@@ -2460,15 +2460,15 @@
   <div id="screen-app" class="screen bg-[#000000] font-body text-white selection:bg-primary h-screen overflow-hidden">
     <div class="flex h-full">
       <!-- Sidebar Navigation (High Fidelity) -->
-      <aside class="hidden lg:flex flex-col w-72 bg-[#050505] border-r border-white/5 p-8 relative z-50">
-        <div class="flex items-center gap-4 mb-14 px-2">
+      <aside class="flex flex-col w-20 md:w-72 bg-[#050505] border-r border-white/5 p-4 md:p-8 relative z-50">
+        <div class="flex items-center justify-center md:justify-start gap-4 mb-14 px-2">
           <div
-            class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(79,70,229,0.3)]">
+            class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(79,70,229,0.3)] shrink-0">
             <span class="text-white font-bold text-xl leading-none">W</span>
           </div>
-          <span class="font-headline font-bold text-lg tracking-tighter uppercase">WylerOS</span>
+          <span class="font-headline font-bold text-lg tracking-tighter uppercase hidden md:inline-block">WylerOS</span>
         </div>
-
+ 
         <nav class="flex-1 space-y-1">
           <button onclick="switchDashboardTab('wallet')" data-dashboard-tab="wallet" class="dash-nav-link active">
             <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2476,14 +2476,14 @@
               <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
               <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
             </svg>
-            <span>Wallet</span>
+            <span class="hidden md:inline-block">Wallet</span>
           </button>
           <button onclick="switchDashboardTab('staking')" data-dashboard-tab="staking" class="dash-nav-link">
             <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M3 3v18h18" />
               <path d="m19 9-5 5-4-4-3 3" />
             </svg>
-            <span>Staking</span>
+            <span class="hidden md:inline-block">Staking</span>
           </button>
           <button onclick="switchDashboardTab('creators')" data-dashboard-tab="creators" class="dash-nav-link">
             <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2492,7 +2492,7 @@
               <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
               <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
-            <span>Creators</span>
+            <span class="hidden md:inline-block">Creators</span>
           </button>
           <button onclick="switchDashboardTab('nfts')" data-dashboard-tab="nfts" class="dash-nav-link">
             <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2500,26 +2500,26 @@
               <circle cx="9" cy="9" r="2" />
               <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
             </svg>
-            <span>NFTs</span>
+            <span class="hidden md:inline-block">NFTs</span>
           </button>
           <button onclick="switchDashboardTab('explore')" data-dashboard-tab="explore" class="dash-nav-link">
             <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10" />
               <path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12Z" />
             </svg>
-            <span>Explore</span>
+            <span class="hidden md:inline-block">Explore</span>
           </button>
         </nav>
-
+ 
         <div class="mt-auto pt-6 border-t border-white/5 px-2">
           <button onclick="showScreen('screen-landing')"
-            class="flex items-center gap-3 text-appTextMuted hover:text-white transition-colors text-[10px] font-bold uppercase tracking-[0.4em]">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            class="flex items-center justify-center md:justify-start gap-3 text-appTextMuted hover:text-white transition-colors text-[10px] font-bold uppercase tracking-[0.4em] w-full">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
               <polyline points="16 17 21 12 16 7" />
               <line x1="21" x2="9" y1="12" y2="12" />
             </svg>
-            Sign Out
+            <span class="hidden md:inline-block">Sign Out</span>
           </button>
         </div>
       </aside>
@@ -2708,7 +2708,7 @@
 
         <!-- Mobile Bottom Nav -->
         <nav
-          class="lg:hidden h-24 bg-black/80 backdrop-blur-2xl border-t border-white/5 flex items-center justify-around px-4 relative z-50">
+          class="hidden h-24 bg-black/80 backdrop-blur-2xl border-t border-white/5 flex items-center justify-around px-4 relative z-50">
           <button onclick="switchDashboardTab('wallet')" class="mobile-nav-link active">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
@@ -2741,7 +2741,7 @@
     <!-- Extra Styles for Dashboard -->
     <style type="text/tailwindcss">
       .dash-nav-link {
-        @apply w-full flex items-center gap-5 px-6 py-4 rounded-2xl transition-all duration-300 text-appTextMuted font-headline text-xs font-bold uppercase tracking-[0.2em] border border-transparent;
+        @apply w-full flex items-center justify-center md:justify-start gap-0 md:gap-5 px-0 md:px-6 py-4 rounded-2xl transition-all duration-300 text-appTextMuted font-headline text-xs font-bold uppercase tracking-[0.2em] border border-transparent;
       }
       .dash-nav-link:hover {
         @apply bg-white/5 text-white;

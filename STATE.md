@@ -37,6 +37,7 @@
 - [x] **Hero Video Adjustments**: Styled the hero video elements to use a slight CSS scale (`scale(1.08)` / `scale-110`) inside `index_copy.html`, `launch-app/public/index.html`, and `launch-app/src/components/landing/Hero.tsx`, cropping out any visible generated watermark/Veo logos while retaining high-fidelity responsiveness.
 - [x] **Mobile Responsive Hero Grid**: Fixed a bug in `launch-app/public/index.html` where the hero section remained in a squeezed 2-column layout on mobile devices instead of stacking vertically. Realigned it to match the desktop template's correct stacked layout (1 column, centered text and buttons, resolving the empty spacing gap).
 - [x] **Branded Favicons**: Replaced the default browser tab favicon with the official glowing blue Wyler Chain logo (`wyler_glow_logo.png`) across all static HTML templates (`index_copy.html`, `launch-app/public/index.html`, `brandkit.html`, and `sui_roadmap.html`), and overrode Next.js's default site icon (`launch-app/src/app/favicon.ico` / `icon.png`) to ensure cohesive visual branding.
+- [x] **Responsive Mobile Dashboard Sidebar**: Replaced the mobile bottom-bar icon navigation with the identical high-fidelity vertical sidebar navigation from the desktop layout inside `launch-app/public/index.html`, automatically shrinking it to a super-slick mini-sidebar (icons only, perfectly centered) on mobile screens, and maintaining the full spacious vertical text layout on desktop.
 
 ## Pending Tasks
 - [ ] Connect `StitchMCP` to the application for live account data.
