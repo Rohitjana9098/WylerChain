@@ -14,7 +14,7 @@ export default function Hero() {
           loop 
           muted 
           playsInline 
-          className="absolute w-full h-full object-cover opacity-20 scale-105"
+          className="absolute w-full h-full object-cover opacity-20 scale-110"
         >
           <source src="/Video/GENERATE_DEATAILS_PROMPT_202604081148.mp4" type="video/mp4" />
         </video>
