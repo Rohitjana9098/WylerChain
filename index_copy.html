@@ -13,6 +13,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
+    @font-face {
+      font-family: 'Artnik';
+      src: local('Artnik'), local('TT Artnik'), local('TRT Artnik');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
     html {
       color-scheme: dark;
       background-color: #000000;
@@ -28,7 +36,7 @@
       --color-white: #ffffff;
       --color-muted: #a1a1aa;
       
-      --font-display: 'Space Grotesk', sans-serif;
+      --font-display: 'Artnik', 'Space Grotesk', sans-serif;
       --font-body: 'Inter', sans-serif;
       
       --gradient-brand: linear-gradient(135deg, var(--color-violet) 0%, var(--color-indigo) 50%, var(--color-blue) 100%);
@@ -460,7 +468,7 @@
                         "full": "0px"
                     },
                     "fontFamily": {
-                        "headline": ["Space Grotesk"],
+                        "headline": ["Artnik", "Space Grotesk"],
                         "body": ["Inter"],
                         "label": ["Inter"],
                         "mono": ["JetBrains Mono"]

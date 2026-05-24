@@ -18,6 +18,7 @@
 - [x] Explore Module Implementation
 - [x] Integration & Interaction Testing
 - [x] Workspace Sync (C: to E:)
+- [x] Standardize brand display/headline font to Artnik
 
 ## Current Blockers
 - None.

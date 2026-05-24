@@ -60,8 +60,15 @@ export default function MainLanding() {
     <div className={`main-landing-wrapper min-h-screen bg-black text-white ${isLoaded ? 'loaded' : 'loading'}`}>
       <style dangerouslySetInnerHTML={{ __html: `
         :root { --primary: #4F46E5; --purple: #6C5CE7; }
+        @font-face {
+          font-family: 'Artnik';
+          src: local('Artnik'), local('TT Artnik'), local('TRT Artnik');
+          font-weight: 300 900;
+          font-style: normal;
+          font-display: swap;
+        }
         .main-landing-wrapper { font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
-        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-headline { font-family: 'Artnik', 'Space Grotesk', sans-serif; }
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .sui-text-shimmer {

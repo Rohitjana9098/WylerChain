@@ -24,7 +24,7 @@ const config: Config = {
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
-        space: ["var(--font-space)"],
+        space: ["'Artnik'", "var(--font-space)", "sans-serif"],
       },
     },
   },

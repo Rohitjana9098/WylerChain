@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;600&display=swap');
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Artnik';
+  src: local('Artnik'), local('TT Artnik'), local('TRT Artnik');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 html {
   color-scheme: dark;
   background-color: #000000;

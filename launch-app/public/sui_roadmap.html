@@ -73,7 +73,7 @@
                         "full": "0px"
                     },
                     "fontFamily": {
-                        "headline": ["Space Grotesk"],
+                        "headline": ["Artnik", "Space Grotesk"],
                         "body": ["Inter"],
                         "label": ["Inter"],
                         "mono": ["JetBrains Mono"]
@@ -83,8 +83,15 @@
         }
     </script>
 <style>
+        @font-face {
+            font-family: 'Artnik';
+            src: local('Artnik'), local('TT Artnik'), local('TRT Artnik');
+            font-weight: 300 900;
+            font-style: normal;
+            font-display: swap;
+        }
         body { font-family: 'Inter', sans-serif; background-color: #0e0e0e; color: #ffffff; margin: 0; scroll-behavior: smooth; overflow-x: hidden; }
-        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-headline { font-family: 'Artnik', 'Space Grotesk', sans-serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         

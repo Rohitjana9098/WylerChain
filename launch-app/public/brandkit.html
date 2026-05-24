@@ -11,6 +11,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
+    @font-face {
+      font-family: 'Artnik';
+      src: local('Artnik'), local('TT Artnik'), local('TRT Artnik');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --bg-app: #000000;
       --text-app: #ffffff;
@@ -27,7 +35,7 @@
       --color-blue: #2563eb;
       --color-primary: #4F46E5;
       
-      --font-display: 'Space Grotesk', sans-serif;
+      --font-display: 'Artnik', 'Space Grotesk', sans-serif;
       --font-body: 'Inter', sans-serif;
       
       --gradient-brand: linear-gradient(135deg, var(--color-violet) 0%, var(--color-indigo) 50%, var(--color-blue) 100%);
@@ -92,7 +100,7 @@
             "primary": "#4F46E5",
           },
           fontFamily: {
-            "headline": ["Space Grotesk"],
+            "headline": ["Artnik", "Space Grotesk"],
             "body": ["Inter"],
             "mono": ["JetBrains Mono"]
           }
@@ -194,9 +202,9 @@
           <div>
             <h3 class="font-mono text-primary text-xs tracking-widest uppercase mb-4">Headlines & Display</h3>
             <div class="brand-card">
-              <div class="font-headline text-5xl text-appText mb-4">Space Grotesk</div>
+              <div class="font-headline text-5xl text-appText mb-4">Artnik</div>
               <p class="text-appTextMuted text-sm leading-relaxed">
-                A proportional sans-serif typeface designed by Florian Karsten. It provides our brand with a technical, geometric, yet approachable identity. We use it strictly for headers, buttons, and high-impact navigational items.
+                A geometric, modern sans-serif typeface. It provides our brand with a high-fidelity, futuristic, and premium identity. We use it strictly for headers, headers, buttons, and high-impact brand navigation items.
               </p>
               <div class="mt-6 flex flex-wrap gap-2 text-primary font-headline">
                 <span class="border border-primary/20 px-3 py-1 rounded text-xs bg-primary/10">Light</span>
