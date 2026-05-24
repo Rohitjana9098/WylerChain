@@ -35,6 +35,7 @@
 - [x] **Front Page View Restoration**: Restored the high-fidelity Landing Page as the default home screen (`screen-landing`) on the page load event, ensuring it serves as the gorgeous primary entrance of WylerChain.
 - [x] **Documentation Link**: Updated the "Whitepaper" button/link across `index_copy.html` and Next.js frontend (`launch-app/public/index.html`) to redirect directly to the official Gitbook documentation at `https://wylerchain-1.gitbook.io/wyler`.
 - [x] **Hero Video Adjustments**: Styled the hero video elements to use a slight CSS scale (`scale(1.08)` / `scale-110`) inside `index_copy.html`, `launch-app/public/index.html`, and `launch-app/src/components/landing/Hero.tsx`, cropping out any visible generated watermark/Veo logos while retaining high-fidelity responsiveness.
+- [x] **Mobile Responsive Hero Grid**: Fixed a bug in `launch-app/public/index.html` where the hero section remained in a squeezed 2-column layout on mobile devices instead of stacking vertically. Realigned it to match the desktop template's correct stacked layout (1 column, centered text and buttons, resolving the empty spacing gap).
 
 ## Pending Tasks
 - [ ] Connect `StitchMCP` to the application for live account data.
