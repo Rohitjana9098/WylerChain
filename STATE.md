@@ -32,6 +32,7 @@
 - [x] **Ecosystem Security Gateway**: Upgraded Login auth layout with active gateway node stat modules, custom orbital ping loaders, auto-chain switcher widgets, and glowing gradient social oauth vectors.
 - [x] **Production Verification**: Confirmed clean compilation of the Next.js optimized production build with 0 TypeScript type errors and successfully synchronized all changes to the remote main repository branch.
 - [x] **Branding Font Standardization**: Standardized the brand's primary display/headline font family from 'Space Grotesk' to 'Artnik' across the Next.js application (globals.css, tailwind.config.ts, and MainLanding.tsx styles) and all static HTML pages (index_copy.html, index.html, brandkit.html, and sui_roadmap.html) with robust local system detection and fallbacks. Verified compilation with zero warnings.
+- [x] **Front Page View Adjustment**: Set the default loaded view on the root landing page (`index.html`) to display the premium Web3 Dashboard screen (`screen-app`) directly, ensuring users instantly land on the functional dashboard instead of the static marketing landing page.
 
 ## Pending Tasks
 - [ ] Connect `StitchMCP` to the application for live account data.
