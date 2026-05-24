@@ -33,6 +33,7 @@
 - [x] **Production Verification**: Confirmed clean compilation of the Next.js optimized production build with 0 TypeScript type errors and successfully synchronized all changes to the remote main repository branch.
 - [x] **Branding Font Standardization**: Standardized the brand's primary display/headline font family from 'Space Grotesk' to 'Artnik' across the Next.js application (globals.css, tailwind.config.ts, and MainLanding.tsx styles) and all static HTML pages (index_copy.html, index.html, brandkit.html, and sui_roadmap.html) with robust local system detection and fallbacks. Verified compilation with zero warnings.
 - [x] **Front Page View Restoration**: Restored the high-fidelity Landing Page as the default home screen (`screen-landing`) on the page load event, ensuring it serves as the gorgeous primary entrance of WylerChain.
+- [x] **Documentation Link**: Updated the "Whitepaper" button/link across `index_copy.html` and Next.js frontend (`launch-app/public/index.html`) to redirect directly to the official Gitbook documentation at `https://wylerchain-1.gitbook.io/wyler`.
 
 ## Pending Tasks
 - [ ] Connect `StitchMCP` to the application for live account data.
