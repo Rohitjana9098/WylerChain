@@ -298,32 +298,197 @@
     
     /* RESPONSIVE */
     @media (max-width: 1024px) {
-      .hero-grid { grid-template-columns: 1fr; text-align: center; }
-      .hero-content { align-items: center; }
-      .hero-chips { justify-content: center; }
-      .hero-ctas { justify-content: center; }
-      .about-grid { grid-template-columns: 1fr; }
-      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-      .roadmap-grid { grid-template-columns: 1fr; gap: 32px; }
-      .timeline-track { top: 0; left: 24px; width: 2px; height: 100%; }
-      .timeline-progress { width: 100%; height: 60%; }
-      .roadmap-phase { padding-top: 0; padding-left: 60px; }
-      .phase-dot { top: 24px; left: 24px; transform: translateY(-50%); }
+      .hero {
+        min-height: auto;
+        padding-top: 140px;
+        padding-bottom: 60px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        text-align: left;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .hero-content {
+        align-items: flex-start;
+      }
+
+      .hero-chips {
+        justify-content: flex-start;
+      }
+
+      .hero-ctas {
+        justify-content: flex-start;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .roadmap-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .timeline-track {
+        top: 0;
+        left: 24px;
+        width: 2px;
+        height: 100%;
+      }
+
+      .timeline-progress {
+        width: 100%;
+        height: 60%;
+      }
+
+      .roadmap-phase {
+        padding-top: 0;
+        padding-left: 60px;
+      }
+
+      .phase-dot {
+        top: 24px;
+        left: 24px;
+        transform: translateY(-50%);
+      }
     }
+
     @media (max-width: 768px) {
-      .nav-links, .nav-ctas { display: none; }
-      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-      .metrics-grid > div:last-child { grid-column: 1 / -1; }
-      .benefits-grid { grid-template-columns: 1fr; }
-      .token-diagram { flex-direction: column; gap: 24px; min-height: auto; margin-top: 40px; }
-      .token-item { position: static; width: 100%; transform: none; }
-      .token-center { margin-bottom: 20px; }
-      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero {
+        padding-top: 110px;
+        padding-bottom: 40px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .hero-content h1 {
+        font-size: 2.0rem !important;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+
+      .hero-content p {
+        font-size: 0.72rem !important;
+        line-height: 1.4;
+        margin-bottom: 16px;
+        max-width: 100%;
+      }
+
+      .hero-content a {
+        padding: 10px 16px !important;
+        font-size: 8px !important;
+        min-width: 130px !important;
+        width: auto !important;
+        text-align: center;
+      }
+
+      .hero-visual {
+        border-radius: 12px !important;
+      }
+
+      .video-container {
+        border-radius: 11px !important;
+      }
+
+      .nav-links,
+      .nav-ctas {
+        display: none;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .metrics-grid>div:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .token-diagram {
+        flex-direction: column;
+        gap: 24px;
+        min-height: auto;
+        margin-top: 40px;
+      }
+
+      .token-item {
+        position: static;
+        width: 100%;
+        transform: none;
+      }
+
+      .token-center {
+        margin-bottom: 20px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
+
     @media (max-width: 480px) {
-      .metrics-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .hero {
+        padding-top: 100px;
+        padding-bottom: 30px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .hero-content h1 {
+        font-size: 1.5rem !important;
+      }
+
+      .hero-content p {
+        font-size: 0.65rem !important;
+        line-height: 1.35;
+        margin-bottom: 12px;
+      }
+
+      .hero-content a {
+        padding: 8px 12px !important;
+        font-size: 7.5px !important;
+        min-width: 110px !important;
+      }
+
+      .hero-visual {
+        border-radius: 8px !important;
+      }
+
+      .video-container {
+        border-radius: 7px !important;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
     }
     /* BONEYARD SKELETON STYLES */
     :root {
@@ -712,12 +877,12 @@
           <span class="font-headline font-bold text-white tracking-[0.2em] text-lg uppercase group-hover/logo:text-primary transition-colors duration-300 hidden sm:block">Wyler Chain</span>
         </a>
       </div>
-      <ul class="hidden lg:flex items-center justify-center gap-8 font-headline text-xs uppercase tracking-[0.2em] text-on-surface-variant">
-        <li><a href="#about" class="hover:text-primary transition-colors">About</a></li>
-        <li><a href="#tech" class="hover:text-primary transition-colors">Stack</a></li>
-        <li><a href="#ecosystem" class="hover:text-primary transition-colors">Eco</a></li>
-        <li><a href="#roadmap" class="hover:text-primary transition-colors">Roadmap</a></li>
-        <li><a href="#token" class="hover:text-primary transition-colors">Token</a></li>
+      <ul class="sui-navbar-nav flex overflow-x-auto hide-scrollbar lg:overflow-visible items-center justify-start lg:justify-center gap-3 font-headline text-xs uppercase tracking-[0.2em] relative z-20 px-4 lg:px-0 max-w-[50vw] sm:max-w-[60vw] lg:max-w-none ml-auto mr-4 lg:mx-0">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#tech" class="nav-link">Stack</a></li>
+        <li><a href="#ecosystem" class="nav-link">Eco</a></li>
+        <li class="hidden md:block"><a href="#roadmap" class="nav-link">Roadmap</a></li>
+        <li class="hidden md:block"><a href="#token" class="nav-link">Token</a></li>
       </ul>
       <div class="hidden md:flex items-center gap-4 shrink-0">
         <a href="#" class="font-headline text-[10px] font-bold uppercase tracking-[0.2em] text-[#a1a1aa] hover:text-white transition-colors px-4 py-2 border border-transparent hover:border-white/20 rounded-full">Join Ecosystem</a>
@@ -735,20 +900,20 @@
           <!-- Ambient Glow -->
           <div class="absolute -left-20 top-0 w-72 h-72 bg-primary/20 blur-[120px] rounded-full pointer-events-none"></div>
           
-          <h1 class="font-headline text-5xl sm:text-6xl md:text-8xl font-bold leading-tight uppercase tracking-tight mb-6 relative z-10 sui-text-shimmer drop-shadow-[0_0_20px_rgba(79,70,229,0.3)]">
-            Wyler Chain
+          <h1 class="font-headline text-3xl sm:text-5xl md:text-8xl font-bold leading-tight uppercase tracking-tight mb-4 sm:mb-6 relative z-10 drop-shadow-[0_0_20px_rgba(79,70,229,0.3)]">
+            Wyler <span class="bg-gradient-to-r from-[#4F46E5] to-[#803bbe] bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(79,70,229,0.5)]">Chain</span>
           </h1>
           
-          <p class="font-body text-on-surface-variant text-base md:text-lg max-w-lg mb-10 relative z-10">
+          <p class="font-body text-on-surface-variant text-base md:text-lg max-w-lg mb-10 relative z-10 leading-relaxed">
             The Layer 3 infrastructure for modular Web3 applications. Highly scalable, infinitely modular, completely yours.
           </p>
           
-          <div class="flex flex-wrap items-center gap-4 relative z-10">
-            <a href="#" class="font-headline text-xs font-bold uppercase tracking-[0.2em] text-white bg-primary px-8 py-4 rounded-sm hover:bg-white hover:text-primary transition-colors shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] border border-primary/50">
-              Build on Wyler
+          <div class="flex flex-col items-start gap-3 sm:gap-4 relative z-10">
+            <a href="#" class="font-headline text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white bg-primary px-6 py-3 sm:px-8 sm:py-4 rounded-sm hover:bg-white hover:text-primary transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] border border-primary/50 text-center min-w-[160px] sm:min-w-[200px]">
+              LAUNCH APP
             </a>
-            <a href="#roadmap" class="font-headline text-xs font-bold uppercase tracking-[0.2em] text-white/70 px-8 py-4 rounded-sm border border-white/10 hover:border-white/40 hover:text-white transition-all duration-300 bg-white/5 backdrop-blur-md">
-              Explore Docs
+            <a href="#roadmap" class="font-headline text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white/70 px-6 py-3 sm:px-8 sm:py-4 rounded-sm border border-white/10 hover:border-white/40 hover:text-white transition-all duration-300 bg-white/5 backdrop-blur-md text-center min-w-[160px] sm:min-w-[200px]">
+              EXPLORE DOCS
             </a>
           </div>
         </div>

@@ -1072,6 +1072,45 @@
     }
 
     @media (max-width: 768px) {
+      .hero {
+        padding-top: 110px;
+        padding-bottom: 40px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .hero-content h1 {
+        font-size: 2.0rem !important;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+
+      .hero-content p {
+        font-size: 0.72rem !important;
+        line-height: 1.4;
+        margin-bottom: 16px;
+        max-width: 100%;
+      }
+
+      .hero-content a {
+        padding: 10px 16px !important;
+        font-size: 8px !important;
+        min-width: 130px !important;
+        width: auto !important;
+        text-align: center;
+      }
+
+      .hero-visual {
+        border-radius: 12px !important;
+      }
+
+      .video-container {
+        border-radius: 11px !important;
+      }
 
       .nav-links,
       .nav-ctas {
@@ -1113,6 +1152,41 @@
     }
 
     @media (max-width: 480px) {
+      .hero {
+        padding-top: 100px;
+        padding-bottom: 30px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .hero-content h1 {
+        font-size: 1.5rem !important;
+      }
+
+      .hero-content p {
+        font-size: 0.65rem !important;
+        line-height: 1.35;
+        margin-bottom: 12px;
+      }
+
+      .hero-content a {
+        padding: 8px 12px !important;
+        font-size: 7.5px !important;
+        min-width: 110px !important;
+      }
+
+      .hero-visual {
+        border-radius: 8px !important;
+      }
+
+      .video-container {
+        border-radius: 7px !important;
+      }
+
       .metrics-grid {
         grid-template-columns: 1fr;
       }
@@ -1542,10 +1616,12 @@
     .nav-pill {
       position: absolute;
       border-radius: 9999px;
-      background: rgba(108, 92, 231, 0.2);
+      background: rgba(79, 70, 229, 0.25);
+      border: 1px solid rgba(79, 70, 229, 0.45);
+      box-shadow: 0 0 15px rgba(79, 70, 229, 0.35);
       /* primary glow */
       pointer-events: none;
-      height: 32px;
+      height: 34px;
       z-index: 0;
       opacity: 0;
     }
@@ -1761,8 +1837,8 @@
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#tech" class="nav-link">Stack</a></li>
           <li><a href="#ecosystem" class="nav-link">Eco</a></li>
-          <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
-          <li><a href="#token" class="nav-link">Token</a></li>
+          <li class="hidden md:block"><a href="#roadmap" class="nav-link">Roadmap</a></li>
+          <li class="hidden md:block"><a href="#token" class="nav-link">Token</a></li>
         </ul>
         <div class="hidden md:flex items-center gap-4 shrink-0">
           <a href="#"
@@ -1774,7 +1850,7 @@
         </div>
       </div>
     </nav>
-
+ 
     <!-- HERO -->
     <header class="hero boneyard-skeleton-container relative overflow-hidden" data-skeleton-name="hero-main">
       <canvas id="hero-network-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
@@ -1784,26 +1860,26 @@
           <div class="hero-content flex flex-col justify-center reveal relative z-10">
             <!-- Ambient Glow -->
             <div class="absolute -left-20 top-0 w-72 h-72 bg-primary/20 blur-[120px] rounded-full pointer-events-none">
-            </div>
-
+              </div>
+ 
             <h1
-              class="font-headline text-3xl sm:text-5xl md:text-8xl font-bold leading-tight uppercase tracking-tight mb-4 sm:mb-6 relative z-10 sui-text-shimmer drop-shadow-[0_0_20px_rgba(79,70,229,0.3)]">
-              Wyler Chain
+              class="font-headline text-3xl sm:text-5xl md:text-8xl font-bold leading-tight uppercase tracking-tight mb-4 sm:mb-6 relative z-10 drop-shadow-[0_0_20px_rgba(79,70,229,0.3)]">
+              Wyler <span class="bg-gradient-to-r from-[#4F46E5] to-[#803bbe] bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(79,70,229,0.5)]">Chain</span>
             </h1>
-
+ 
             <p class="font-body text-appTextMuted text-[10px] sm:text-sm md:text-lg max-w-lg mb-6 sm:mb-10 relative z-10 leading-relaxed">
               A next-generation Layer 3 blockchain built on Arbitrum. Enabling zero gas fees, seamless social login, and
               scalable dApp deployment.
             </p>
-
-            <div class="flex flex-col sm:flex-row flex-wrap items-start gap-2 sm:gap-4 relative z-10">
+ 
+            <div class="flex flex-col items-start gap-3 sm:gap-4 relative z-10">
               <a href="/app"
-                class="font-headline text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-appText bg-primary px-4 py-3 sm:px-8 sm:py-4 rounded-sm hover:bg-white hover:text-primary transition-colors shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] border border-primary/50 text-center w-full sm:w-auto">
-                Launch App
+                class="font-headline text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-appText bg-primary px-6 py-3 sm:px-8 sm:py-4 rounded-sm hover:bg-white hover:text-primary transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] border border-primary/50 text-center min-w-[160px] sm:min-w-[200px]">
+                LAUNCH APP
               </a>
               <a href="#roadmap"
-                class="font-headline text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] text-appText/70 px-4 py-3 sm:px-8 sm:py-4 rounded-sm border border-appBorder/10 hover:border-white/40 hover:text-appText transition-all duration-300 bg-appText/5 backdrop-blur-md text-center w-full sm:w-auto">
-                Explore Docs
+                class="font-headline text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-appText/70 px-6 py-3 sm:px-8 sm:py-4 rounded-sm border border-appBorder/10 hover:border-white/40 hover:text-appText transition-all duration-300 bg-appText/5 backdrop-blur-md text-center min-w-[160px] sm:min-w-[200px]">
+                EXPLORE DOCS
               </a>
             </div>
           </div>
@@ -3003,7 +3079,7 @@
         const rect = el.getBoundingClientRect();
         // Offset pill slightly
         pill.style.left = (rect.left - navRect.left) + 'px';
-        pill.style.top = (rect.top - navRect.top + (rect.height - 32) / 2) + 'px';
+        pill.style.top = (rect.top - navRect.top + (rect.height - 34) / 2) + 'px';
         pill.style.width = rect.width + 'px';
         pill.style.opacity = '1';
       }
