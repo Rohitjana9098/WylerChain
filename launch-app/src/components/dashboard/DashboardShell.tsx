@@ -123,6 +123,25 @@ export default function DashboardShell() {
 
       {/* Background Decor */}
       <div className="fixed inset-0 pointer-events-none -z-10">
+         <style>{`
+           .mesh-gradient-bg {
+             position: absolute;
+             inset: 0;
+             background: 
+               radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.15) 0px, transparent 50%),
+               radial-gradient(at 100% 100%, rgba(105, 156, 255, 0.1) 0px, transparent 50%),
+               radial-gradient(at 50% 50%, rgba(0, 0, 0, 1) 0px, #0e0e0e 100%);
+             background-size: 200% 200%;
+             animation: mesh-flow 20s ease-in-out infinite alternate;
+             z-index: -30;
+           }
+           @keyframes mesh-flow {
+             0% { background-position: 0% 0%; }
+             100% { background-position: 100% 100%; }
+           }
+         `}</style>
+         <div className="mesh-gradient-bg" />
+         
          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full" />
          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-blue/5 blur-[120px] rounded-full" />
       </div>

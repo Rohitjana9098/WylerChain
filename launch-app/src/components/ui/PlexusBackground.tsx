@@ -113,7 +113,26 @@ export default function PlexusBackground() {
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-      {/* Dynamic Glowing Blobs from 8080 index.html */}
+      <style>{`
+        .mesh-gradient-bg {
+          position: absolute;
+          inset: 0;
+          background: 
+            radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.15) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, rgba(105, 156, 255, 0.1) 0px, transparent 50%),
+            radial-gradient(at 50% 50%, rgba(0, 0, 0, 1) 0px, #0e0e0e 100%);
+          background-size: 200% 200%;
+          animation: mesh-flow 20s ease-in-out infinite alternate;
+          z-index: -30;
+        }
+        @keyframes mesh-flow {
+          0% { background-position: 0% 0%; }
+          100% { background-position: 100% 100%; }
+        }
+      `}</style>
+      <div className="mesh-gradient-bg" />
+      
+      {/* Dynamic Glowing Blobs */}
       <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-indigo-600/30 rounded-full blur-[120px] mix-blend-screen animate-pulse"></div>
       <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[150px] mix-blend-screen animate-pulse delay-1000"></div>
       
