@@ -83,9 +83,9 @@ export default function Dashboard() {
       <header className="sticky top-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 px-4 sm:px-6 h-20">
         <div className="max-w-[1600px] mx-auto h-full flex items-center justify-between relative z-10">
           <div className="flex items-center gap-4 sm:gap-10">
-            <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.location.reload()}>
-              <img src="/LOGO/wyler_glow_logo.png" alt="Wyler" className="h-10 w-auto" />
-              <span className="font-headline font-bold uppercase text-xs tracking-[0.3em] hidden sm:block">Wyler Chain</span>
+            <div className="flex items-center gap-3 cursor-pointer group/brand" onClick={() => window.location.reload()}>
+              <img src="/LOGO/wyler_glow_logo.png" alt="Wyler" className="h-10 w-auto transition-transform duration-500 group-hover/brand:scale-105" />
+              <span className="font-headline font-bold uppercase text-xs tracking-[0.3em] hidden sm:block text-gray-300 group-hover/brand:text-white group-hover/brand:drop-shadow-[0_0_8px_rgba(79,70,229,0.5)] transition-all duration-300">Wyler Chain</span>
             </div>
             
             <nav 
@@ -94,7 +94,7 @@ export default function Dashboard() {
             >
               {TABS.map((tab) => (
                 <button
-                  key={tab.id}
+                   key={tab.id}
                   onClick={() => setTab(tab.id)}
                   onMouseEnter={() => setHoveredTab(tab.id)}
                   className={`relative px-6 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest transition-colors flex items-center gap-2 z-10 ${
@@ -107,7 +107,7 @@ export default function Dashboard() {
                   {hoveredTab === tab.id && (
                     <motion.div
                       layoutId="dashboard-hover-pill"
-                      className="absolute inset-0 bg-white/5 rounded-full -z-10"
+                      className="absolute inset-0 bg-primary/10 border border-primary/20 rounded-full -z-10"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}

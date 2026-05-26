@@ -35,11 +35,11 @@ export default function DashboardShell() {
     <div className="flex min-h-screen bg-background">
       {/* Sidebar */}
       <aside className="w-80 border-r border-white/5 bg-surface-low/30 backdrop-blur-3xl p-8 flex flex-col fixed h-full z-40">
-        <div className="flex items-center gap-3 mb-16">
-          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg">
+        <div className="flex items-center gap-3 mb-16 cursor-pointer group/brand" onClick={() => window.location.reload()}>
+          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg transition-transform duration-500 group-hover/brand:scale-105 group-hover/brand:shadow-primary/30">
             <span className="text-white font-bold text-xl uppercase">W</span>
           </div>
-          <span className="font-space font-bold text-lg uppercase tracking-[0.2em]">WylerChain</span>
+          <span className="font-space font-bold text-lg uppercase tracking-[0.2em] text-gray-300 group-hover/brand:text-white group-hover/brand:drop-shadow-[0_0_8px_rgba(79,70,229,0.5)] transition-all duration-300">WylerChain</span>
         </div>
 
         <nav className="space-y-4 flex-1">
@@ -50,7 +50,7 @@ export default function DashboardShell() {
               className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all duration-300 group ${
                 activeTab === item.id 
                 ? "bg-primary/25 border border-primary/45 text-white shadow-[0_0_15px_rgba(79,70,229,0.35)]" 
-                : "text-white/40 hover:text-white hover:bg-white/5 border border-transparent"
+                : "text-white/40 hover:text-white hover:bg-primary/10 hover:border-primary/20 border border-transparent"
               }`}
             >
               <div className="flex items-center gap-4">
