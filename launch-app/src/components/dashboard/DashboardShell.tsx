@@ -49,8 +49,8 @@ export default function DashboardShell() {
               onClick={() => setTab(item.id)}
               className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all duration-300 group ${
                 activeTab === item.id 
-                ? "bg-primary text-white shadow-xl shadow-primary/20" 
-                : "text-white/40 hover:text-white hover:bg-white/5"
+                ? "bg-primary/25 border border-primary/45 text-white shadow-[0_0_15px_rgba(79,70,229,0.35)]" 
+                : "text-white/40 hover:text-white hover:bg-white/5 border border-transparent"
               }`}
             >
               <div className="flex items-center gap-4">

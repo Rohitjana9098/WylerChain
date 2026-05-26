@@ -116,7 +116,7 @@ export default function Dashboard() {
                   {activeTab === tab.id && (
                     <motion.div
                       layoutId="dashboard-active-pill"
-                      className="absolute inset-0 bg-indigo-500/25 border border-indigo-500/45 rounded-full shadow-[0_0_15px_rgba(79,70,229,0.35)] -z-20"
+                      className="absolute inset-0 bg-primary/25 border border-primary/45 rounded-full shadow-[0_0_15px_rgba(79,70,229,0.35)] -z-20"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
