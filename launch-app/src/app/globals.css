@@ -54,6 +54,11 @@ html {
   --color-muted: var(--on-surface-variant);
   --color-border: var(--outline-variant);
   
+  --font-inter: var(--font-inter), sans-serif;
+  --font-space: 'Artnik', var(--font-space), sans-serif;
+  --font-headline: 'Artnik', var(--font-space), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  
   --animate-shimmer: textShimmer 5s linear infinite;
   
   @keyframes textShimmer {
@@ -67,6 +72,7 @@ html {
 
 body {
   @apply bg-background text-foreground antialiased;
+  font-family: var(--font-inter), sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
