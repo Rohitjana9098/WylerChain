@@ -180,7 +180,7 @@ export default function Landing() {
           <div className="text-center mb-12">
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary mb-3">Core Features</p>
             <SuiReveal
-              text="Built for the Next Web3 Layer"
+              text="The Blockchain Built for Creators"
               as="h2"
               className="text-3xl md:text-5xl font-space font-bold text-white uppercase tracking-tighter"
             />
