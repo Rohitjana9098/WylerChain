@@ -1705,6 +1705,80 @@
     }
     }
 
+    /* Morphing Glow Blobs (SUI-inspired) */
+    .morphing-blob-1 {
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, rgba(108, 92, 231, 0.05) 50%, transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      animation: morph 20s infinite alternate ease-in-out;
+      pointer-events: none;
+    }
+
+    .morphing-blob-2 {
+      position: absolute;
+      bottom: -10%;
+      left: -10%;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(91, 44, 255, 0.04) 50%, transparent 70%);
+      filter: blur(100px);
+      z-index: 0;
+      animation: morph 25s infinite alternate-reverse ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes morph {
+      0%, 100% {
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+      33% {
+        border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
+        transform: translate(60px, -40px) scale(1.15) rotate(120deg);
+      }
+      66% {
+        border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%;
+        transform: translate(-40px, 60px) scale(0.9) rotate(240deg);
+      }
+    }
+
+    /* Animated Tech Grid (SUI-inspired) */
+    .tech-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      mask-image: radial-gradient(circle at 50% 50%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 20%, transparent 80%);
+      z-index: 0;
+      opacity: 0.7;
+      pointer-events: none;
+      animation: grid-glow-pulse 8s infinite alternate ease-in-out;
+    }
+
+    @keyframes grid-glow-pulse {
+      0% { opacity: 0.5; }
+      100% { opacity: 0.9; }
+    }
+
+    .tech-grid-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(79, 70, 229, 0.05), transparent 40%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
@@ -1859,6 +1933,11 @@
     <!-- HERO -->
     <header class="hero boneyard-skeleton-container relative overflow-hidden" data-skeleton-name="hero-main">
       <canvas id="hero-network-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+      <!-- SUI-inspired Animated Backdrop Elements -->
+      <div class="tech-grid-bg"></div>
+      <div class="tech-grid-glow"></div>
+      <div class="morphing-blob-1"></div>
+      <div class="morphing-blob-2"></div>
       <div class="boneyard-skeleton-overlay relative z-10"></div>
       <div class="container skeleton-content-wrapper relative z-10">
         <div class="hero-grid">
@@ -2074,10 +2153,10 @@
         </div>
 
         <!-- BENTO GRID -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal auto-rows-[280px]">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px]">
 
           <!-- Bento 1 (Spans 2 columns) -->
-          <div class="sui-style-card col-span-1 md:col-span-2 p-8 group flex flex-col justify-end relative">
+          <div class="sui-style-card reveal col-span-1 md:col-span-2 p-8 group flex flex-col justify-end relative">
             <div class="absolute inset-0 bg-gradient-to-tr from-blue-600/10 to-transparent"></div>
             <div
               class="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 blur-[60px] translate-x-1/3 -translate-y-1/3 rounded-full group-hover:scale-150 transition-transform duration-1000">
@@ -2091,7 +2170,7 @@
           </div>
 
           <!-- Bento 2 -->
-          <div class="sui-style-card col-span-1 p-8 group flex flex-col justify-end overflow-hidden">
+          <div class="sui-style-card reveal reveal-delay-1 col-span-1 p-8 group flex flex-col justify-end overflow-hidden">
             <div
               class="absolute inset-0 border-[3px] border-primary/20 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-700">
             </div>
@@ -2104,7 +2183,7 @@
           </div>
 
           <!-- Bento 3 -->
-          <div class="sui-style-card col-span-1 p-8 group flex flex-col justify-end">
+          <div class="sui-style-card reveal reveal-delay-2 col-span-1 p-8 group flex flex-col justify-end">
             <div
               class="absolute top-[-20%] left-[-20%] w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/5 to-transparent">
             </div>
@@ -2117,7 +2196,7 @@
           </div>
 
           <!-- Bento 4 (Spans 2 columns) -->
-          <div class="sui-style-card col-span-1 md:col-span-2 p-8 group flex flex-col justify-end overflow-hidden">
+          <div class="sui-style-card reveal col-span-1 md:col-span-2 p-8 group flex flex-col justify-end overflow-hidden">
             <div
               class="absolute right-0 top-0 h-full w-1/2 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-appText/[0.01]">
             </div>
@@ -2133,7 +2212,7 @@
           </div>
 
           <!-- Bento 5 (Spans 2 columns) -->
-          <div class="sui-style-card col-span-1 md:col-span-2 p-8 group flex flex-col justify-end">
+          <div class="sui-style-card reveal reveal-delay-1 col-span-1 md:col-span-2 p-8 group flex flex-col justify-end">
             <div
               class="absolute bottom-0 right-0 w-64 h-64 bg-primary/10 blur-[60px] translate-x-1/3 translate-y-1/3 rounded-full group-hover:scale-125 transition-transform duration-1000">
             </div>
@@ -2146,7 +2225,7 @@
           </div>
 
           <!-- Bento 6 -->
-          <div class="sui-style-card col-span-1 p-8 group flex flex-col justify-end">
+          <div class="sui-style-card reveal reveal-delay-2 col-span-1 p-8 group flex flex-col justify-end">
             <div class="absolute inset-0 bg-gradient-to-br from-transparent to-red-500/5"></div>
             <div
               class="relative z-10 w-12 h-12 rounded bg-appText/5 border border-appBorder/10 flex items-center justify-center text-red-400 text-xl mb-4 group-hover:-translate-y-2 transition-transform duration-500">
