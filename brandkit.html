@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WylerChain | Brand Kit</title>
+  <meta name="description" content="Official WylerChain brand assets, logos, typography, and color palettes." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-app: #000000;
+      --text-app: #ffffff;
+      --text-muted: #adaaaa;
+      --border-app: #ffffff;
+      --surface-darker: #020202;
+      --surface-dark: #050505;
+      --surface-card: #0a0a0e;
+      --surface-main: #0e0e0e;
+      --text-rgb: 255, 255, 255;
+      
+      --color-violet: #5b2cff;
+      --color-indigo: #4a42f4;
+      --color-blue: #2563eb;
+      --color-primary: #4F46E5;
+      
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --gradient-brand: linear-gradient(135deg, var(--color-violet) 0%, var(--color-indigo) 50%, var(--color-blue) 100%);
+    }
+    
+    html.light {
+      --bg-app: #f8f9fa;
+      --text-app: #0e0e0e;
+      --text-muted: #5e5e5e;
+      --border-app: #000000;
+      --surface-darker: #e9ecef;
+      --surface-dark: #f1f3f5;
+      --surface-card: #ffffff;
+      --surface-main: #f8f9fa;
+      --text-rgb: 14, 14, 14;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background-color: var(--bg-app);
+      color: var(--text-app);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; }
+    
+    .color-swatch {
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(var(--text-rgb), 0.1);
+    }
+    
+    .brand-card {
+      background: var(--surface-card);
+      border: 1px solid rgba(var(--text-rgb), 0.05);
+      border-radius: 12px;
+      padding: 32px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .brand-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79, 70, 229, 0.4);
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "appBg": "var(--bg-app)",
+            "appText": "var(--text-app)",
+            "appTextMuted": "var(--text-muted)",
+            "appBorder": "var(--border-app)",
+            "surfaceCard": "var(--surface-card)",
+            "primary": "#4F46E5",
+          },
+          fontFamily: {
+            "headline": ["Space Grotesk"],
+            "body": ["Inter"],
+            "mono": ["JetBrains Mono"]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 w-full z-50 border-b border-appBorder/10 bg-appBg/80 backdrop-blur-xl">
+    <div class="max-w-[1200px] mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="LOGO/wyler_glow_logo.png" alt="Wyler Chain Logo" class="h-8" style="filter: var(--logo-filter, none);">
+        <span class="font-headline font-bold text-appText uppercase tracking-[0.2em] text-sm">WylerChain</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <button id="theme-toggle" class="font-headline text-[10px] font-bold uppercase tracking-[0.2em] text-appTextMuted hover:text-appText transition-colors px-4 py-2 border border-appBorder/10 rounded-full flex items-center gap-2">
+          <span id="theme-icon">☀ LIGHT</span>
+        </button>
+        <a href="index.html" class="font-headline text-[10px] font-bold uppercase tracking-[0.2em] text-appText bg-primary px-6 py-3 rounded-full hover:bg-white hover:text-primary transition-colors">Back to Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-32 pb-24">
+    <div class="max-w-[1200px] mx-auto px-6">
+      
+      <!-- HEADER -->
+      <header class="mb-20">
+        <span class="font-mono text-primary text-xs tracking-[0.4em] uppercase font-bold mb-4 block">Official Assets</span>
+        <h1 class="font-headline text-5xl md:text-7xl font-bold text-appText uppercase tracking-tighter mb-6">WylerChain Brand Kit</h1>
+        <p class="font-body text-appTextMuted text-lg max-w-2xl">
+          Everything you need to accurately represent the WylerChain brand. Use these assets for partnerships, media, and built-on-wyler applications.
+        </p>
+      </header>
+
+      <!-- LOGOS -->
+      <section class="mb-24">
+        <h2 class="font-headline text-3xl font-bold text-appText uppercase mb-8 border-b border-appBorder/10 pb-4">Logos & Wordmarks</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <div class="brand-card text-center">
+            <div class="h-48 flex items-center justify-center bg-black rounded-lg mb-6 border border-white/10 overflow-hidden relative">
+              <img src="LOGO/geometric_w_full.png" alt="Wyler Metric Logo" class="h-32 object-contain">
+            </div>
+            <h3 class="font-headline text-xl font-bold text-appText mb-2">Primary Geometric Mark</h3>
+            <p class="text-appTextMuted text-sm mb-6">The standalone 'W' geometric icon. Used for avatars, icons, and minimal representations.</p>
+            <a href="LOGO/geometric_w_full.png" download class="inline-block border border-appBorder/20 text-appText px-6 py-2 rounded font-headline text-xs tracking-widest uppercase hover:bg-appText/5">Download PNG</a>
+          </div>
+
+          <div class="brand-card text-center">
+            <div class="h-48 flex items-center justify-center bg-black rounded-lg mb-6 border border-white/10 overflow-hidden">
+              <img src="LOGO/wyler_glow_logo.png" alt="Wyler Glow Logo" class="h-16 object-contain">
+            </div>
+            <h3 class="font-headline text-xl font-bold text-appText mb-2">Primary Glow Context</h3>
+            <p class="text-appTextMuted text-sm mb-6">The signature glow asset for high-contrast dark backgrounds and hero sections.</p>
+            <a href="LOGO/wyler_glow_logo.png" download class="inline-block border border-appBorder/20 text-appText px-6 py-2 rounded font-headline text-xs tracking-widest uppercase hover:bg-appText/5">Download PNG</a>
+          </div>
+          
+        </div>
+      </section>
+
+      <!-- COLORS -->
+      <section class="mb-24">
+        <h2 class="font-headline text-3xl font-bold text-appText uppercase mb-8 border-b border-appBorder/10 pb-4">Color Palette</h2>
+        <p class="text-appTextMuted mb-8">WylerChain relies on a highly focused neon palette placed against abyssal dark backgrounds to ensure high contrast and a premium Web3 aesthetic.</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div>
+            <div class="color-swatch" style="background-color: #4F46E5;"></div>
+            <h4 class="font-headline font-bold text-appText">Primary Indigo</h4>
+            <p class="font-mono text-xs text-appTextMuted mt-1">#4F46E5</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: #5b2cff;"></div>
+            <h4 class="font-headline font-bold text-appText">Wyler Violet</h4>
+            <p class="font-mono text-xs text-appTextMuted mt-1">#5B2CFF</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: #2563eb;"></div>
+            <h4 class="font-headline font-bold text-appText">Accent Blue</h4>
+            <p class="font-mono text-xs text-appTextMuted mt-1">#2563EB</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: #0a0a0e;"></div>
+            <h4 class="font-headline font-bold text-appText">Obsidian Surface</h4>
+            <p class="font-mono text-xs text-appTextMuted mt-1">#0A0A0E</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TYPOGRAPHY -->
+      <section>
+        <h2 class="font-headline text-3xl font-bold text-appText uppercase mb-8 border-b border-appBorder/10 pb-4">Typography</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="font-mono text-primary text-xs tracking-widest uppercase mb-4">Headlines & Display</h3>
+            <div class="brand-card">
+              <div class="font-headline text-5xl text-appText mb-4">Space Grotesk</div>
+              <p class="text-appTextMuted text-sm leading-relaxed">
+                A proportional sans-serif typeface designed by Florian Karsten. It provides our brand with a technical, geometric, yet approachable identity. We use it strictly for headers, buttons, and high-impact navigational items.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2 text-primary font-headline">
+                <span class="border border-primary/20 px-3 py-1 rounded text-xs bg-primary/10">Light</span>
+                <span class="border border-primary/20 px-3 py-1 rounded text-xs">Regular</span>
+                <span class="border border-primary/20 px-3 py-1 rounded text-xs font-bold">Bold</span>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="font-mono text-primary text-xs tracking-widest uppercase mb-4">Body Text & Data</h3>
+            <div class="brand-card">
+              <div class="font-body text-4xl text-appText mb-4 font-semibold">Inter</div>
+              <p class="text-appTextMuted text-sm leading-relaxed">
+                Crafted & designed for computer screens. Inter provides maximum legibility for long-form paragraphs, technical documentation, transaction data, strings, and standard UI elements.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2 text-primary font-body">
+                <span class="border border-primary/20 px-3 py-1 rounded text-xs bg-primary/10">Regular</span>
+                <span class="border border-primary/20 px-3 py-1 rounded text-xs font-medium">Medium</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="border-t border-appBorder/10 py-8 bg-surfaceCard text-center">
+    <div class="font-headline text-xs text-appTextMuted uppercase tracking-widest">
+      © 2026 WylerChain Foundation
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    // Sync with index.html state if transferred via session/local storage (optional)
+    // For now, standalone toggle:
+    themeToggle.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.toggle('light');
+        themeIcon.innerText = isLight ? '☾ DARK' : '☀ LIGHT';
+        
+        // Handle logo inversion
+        const logos = document.querySelectorAll('img[src*="wyler_glow_logo"], img[src*="geometric_w"]');
+        logos.forEach(img => {
+            img.style.filter = isLight ? 'invert(1) hue-rotate(180deg)' : 'none';
+        });
+    });
+  </script>
+</body>
+</html>
