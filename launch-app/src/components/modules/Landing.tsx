@@ -187,7 +187,7 @@ export default function Landing() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard icon={<Zap />} title="Gasless Transactions" description="Abstracted gas fees for a seamless Web2-like user experience. Zero friction onboarding." />
-            <FeatureCard icon={<Shield />} title="Social Login" description="Onboard users in seconds with Google, Apple, or Email. Seedless wallet generation included." />
+            <FeatureCard icon={<Shield />} title="Social Login" description="Onboard users in seconds with Google, Telegram, X, or Email. Seedless wallet generation included." />
             <FeatureCard icon={<Repeat />} title="Cross-Chain Support" description="Native interoperability across all major blockchain ecosystems without bridging overhead." />
             <FeatureCard icon={<Layers />} title="Liquid Staking" description="Maximize yields while keeping your assets liquid for the creator economy at all times." />
             <FeatureCard icon={<Cpu />} title="L3 Performance" description="High-throughput infrastructure optimized for high-frequency social interactions at scale." />

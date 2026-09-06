@@ -6,7 +6,7 @@ import { useAuth } from "@/lib/AuthContext";
 import { 
   ChevronLeft, 
   Mail, 
-  Apple, 
+  Send,
   Globe, 
   Wallet as WalletIcon, 
   CheckCircle2, 
@@ -134,6 +134,18 @@ export default function Login() {
     }, 2500);
   };
 
+  const handleSocialLogin = (provider: string) => {
+    setShowWalletModal(true);
+    setAuthState("SIGNING");
+    setStatusMessage(`Verifying ${provider} identity and generating secure account node...`);
+
+    setTimeout(() => {
+      setAuthState("SUCCESS");
+      setStatusMessage("Ecosystem Profile Constructed!");
+      setTimeout(() => login(provider), 1500);
+    }, 1500);
+  };
+
   const resetAuth = () => {
     disconnect();
     setAuthState("IDLE");
@@ -233,8 +245,9 @@ export default function Login() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <SocialButton icon={<Globe size={18} />} label="Google Account" />
-                <SocialButton icon={<Apple size={18} />} label="Apple ID" />
+                <SocialButton icon={<Globe size={18} />} label="Google Account" onClick={() => handleSocialLogin("GOOGLE")} />
+                <SocialButton icon={<Send size={18} />} label="Telegram" onClick={() => handleSocialLogin("TELEGRAM")} />
+                <SocialButton icon={<XIcon />} label="X" onClick={() => handleSocialLogin("X")} />
               </div>
             </div>
           ) : (
@@ -441,11 +454,19 @@ export default function Login() {
   );
 }
 
-function SocialButton({ icon, label }: { icon: React.ReactNode, label: string }) {
+function SocialButton({ icon, label, onClick }: { icon: React.ReactNode, label: string, onClick: () => void }) {
   return (
-    <button className="flex items-center justify-center gap-3 w-full py-4 bg-white/[0.01] rounded-2xl border border-white/5 hover:bg-white/5 hover:border-primary/40 hover:shadow-[0_0_20px_rgba(79,70,229,0.1)] transition-all text-gray-400 hover:text-white group">
+    <button onClick={onClick} className="flex items-center justify-center gap-3 w-full py-4 bg-white/[0.01] rounded-2xl border border-white/5 hover:bg-white/5 hover:border-primary/40 hover:shadow-[0_0_20px_rgba(79,70,229,0.1)] transition-all text-gray-400 hover:text-white group">
       <span className="group-hover:text-primary transition-colors">{icon}</span>
       <span className="font-bold text-[10px] uppercase tracking-[0.2em]">{label}</span>
     </button>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] fill-current">
+      <path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.24l-4.89-6.39L6.48 22H3.36l7.24-8.28L2.8 2h6.4l4.42 5.84L18.9 2Zm-1.1 17.85h1.73L8.28 4.05H6.42L17.8 19.85Z" />
+    </svg>
   );
 }
