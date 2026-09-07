@@ -19,9 +19,12 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState<string | null>(null);
-  const [currentView, setCurrentView] = useState<View>("LANDING");
+  // Dashboard-first default: open the main website straight into the Dashboard.
+  // Mock auth state (login is mocked), so the app boots authenticated. Logout
+  // still returns to LANDING and the login flow still works as before.
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [currentUser, setCurrentUser] = useState<string | null>("wyler_creator_01");
+  const [currentView, setCurrentView] = useState<View>("DASHBOARD");
   const [activeTab, setActiveTab] = useState<Tab>("WALLET");
 
   const login = (method: string) => {

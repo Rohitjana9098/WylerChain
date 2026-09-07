@@ -11,29 +11,47 @@ const FEED_TEMPLATES = [
   { type: "MINTED", amounts: ["1.00"], addresses: ["Wyler Origin #42", "Flux Badge #108", "Genesis Drop #7"] },
 ];
 
-function randomItem<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
+// Deterministic PRNG (mulberry32) so the initial feed renders identically on
+// the server and the client — this avoids React hydration mismatches that
+// occur when the initial state is built with Math.random().
+function mulberry32(seed: number) {
+  return function () {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
 }
 
-function generateTx(id: number) {
-  const template = randomItem(FEED_TEMPLATES);
-  return {
-    id,
-    type: template.type,
-    amount: randomItem(template.amounts),
-    address: randomItem(template.addresses),
-    timeAgo: "just now",
-    symbol: template.type === "MINTED" ? "NFT" : "WYLR",
+function makeGenerator(rand: () => number) {
+  const randomItem = <T,>(arr: T[]): T => arr[Math.floor(rand() * arr.length)];
+  return (id: number) => {
+    const template = randomItem(FEED_TEMPLATES);
+    return {
+      id,
+      type: template.type,
+      amount: randomItem(template.amounts),
+      address: randomItem(template.addresses),
+      timeAgo: "just now",
+      symbol: template.type === "MINTED" ? "NFT" : "WYLR",
+    };
   };
 }
 
 export default function LiveTransactionFeed() {
-  const [items, setItems] = useState(() => [generateTx(0), generateTx(1), generateTx(2)]);
+  // Deterministic initial items (seeded) — identical on server and client.
+  const [items, setItems] = useState(() => {
+    const gen = makeGenerator(mulberry32(42));
+    return [gen(0), gen(1), gen(2)];
+  });
   const idRef = React.useRef(3);
 
   useEffect(() => {
+    // Live updates run on the client only (after hydration), so Math.random is fine here.
+    const gen = makeGenerator(Math.random);
     const interval = setInterval(() => {
-      const newTx = generateTx(idRef.current++);
+      const newTx = gen(idRef.current++);
       setItems((prev) => [newTx, ...prev].slice(0, 5));
     }, 3500);
     return () => clearInterval(interval);

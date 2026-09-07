@@ -3,7 +3,7 @@
 ## Current Context
 - **Workspace**: `e:\WylerChain`
 - **Active Task**: Resuming development and integrating Stitch.
-- **Last Updated**: 2026-04-14
+- **Last Updated**: 2026-09-07
 
 ## Completed Tasks
 - [x] Initial UI/UX design for Landing Page.
@@ -12,6 +12,12 @@
 - [x] Mock authentication flow created.
 - [x] Module UI components (Wallet, Staking, etc.) built with high-fidelity styles.
 - [x] Fixed syntax and logical errors in `index.html` (CSS braces, Tailwind directives, button logic).
+- [x] Social login options (Google / Telegram / X) added to the `/app` dashboard "Connect Wallet" button via additive overlay (`app/wyler-social-login.js`); mirrored `app/index.html` backed up to `app/index.html.pre-social.bak`.
+- [x] OKX Wallet option added with user-provided logo (`logos/okx-icon.png`): real connect via `window.okxwallet` (EIP-1193) with demo-mode fallback; OKX row also injected into the native wallet modal. Overlay script bumped to `?v=2`.
+- [x] Phantom Wallet option added with user-provided logo (`logos/phantom-icon.png`): real connect via `window.phantom` (EIP-1193) with demo-mode fallback; native "Phantom" row's generic icon rebranded with the logo, and a Phantom row injected when not detected. Overlay script bumped to `?v=3`; modal made scrollable.
+- [x] MetaMask option added with user-provided logo (`logos/metamask-icon.png`): real connect via `window.ethereum.isMetaMask` (EIP-1193) with demo-mode fallback; native "MetaMask" row's generic icon rebranded with the logo, and a MetaMask row injected when not detected. Overlay script bumped to `?v=4`.
+- [x] Coinbase Wallet option added with user-provided logo (`logos/coinbase-icon.png`): real connect via `window.coinbaseWalletExtension` / `isCoinbaseWallet` (EIP-1193) with demo-mode fallback; native "Coinbase Wallet" row's generic icon rebranded, and a Coinbase row injected when not detected. Overlay script bumped to `?v=5`.
+- [x] Wallet rows without a custom logo hidden from the native wallet modal (`hideUnbrandedNativeRows`): only Wyler L3 Vault + the four branded wallets (OKX / Phantom / MetaMask / Coinbase) remain visible in the login/wallet section. Overlay script bumped to `?v=6`.
 
 ## Pending Tasks
 - [ ] Connect `StitchMCP` to the application.
