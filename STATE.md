@@ -18,6 +18,8 @@
 - [x] MetaMask option added with user-provided logo (`logos/metamask-icon.png`): real connect via `window.ethereum.isMetaMask` (EIP-1193) with demo-mode fallback; native "MetaMask" row's generic icon rebranded with the logo, and a MetaMask row injected when not detected. Overlay script bumped to `?v=4`.
 - [x] Coinbase Wallet option added with user-provided logo (`logos/coinbase-icon.png`): real connect via `window.coinbaseWalletExtension` / `isCoinbaseWallet` (EIP-1193) with demo-mode fallback; native "Coinbase Wallet" row's generic icon rebranded, and a Coinbase row injected when not detected. Overlay script bumped to `?v=5`.
 - [x] Wallet rows without a custom logo hidden from the native wallet modal (`hideUnbrandedNativeRows`): only Wyler L3 Vault + the four branded wallets (OKX / Phantom / MetaMask / Coinbase) remain visible in the login/wallet section. Overlay script bumped to `?v=6`.
+- [x] All updates merged and pushed to GitHub (merge commit `e550986`; remote branding history preserved, local site versions won shared files).
+- [x] Fixed Vercel build failure: added `viem`, `wagmi`, `@tanstack/react-query` to `launch-app` (required by merged faucet route + Web3Provider) and fixed missing `Users` lucide import in `CreatorsTab.tsx`; verified with local `next build` (commit `519f439`).
 
 ## Pending Tasks
 - [ ] Connect `StitchMCP` to the application.
