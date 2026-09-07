@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Search, Heart, MessageSquare, DollarSign, Filter, Grid, List } from "lucide-react";
+import { Search, Heart, MessageSquare, DollarSign, Filter, Grid, List, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 const CREATORS = [
