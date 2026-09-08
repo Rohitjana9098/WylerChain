@@ -20,6 +20,7 @@
 - [x] Wallet rows without a custom logo hidden from the native wallet modal (`hideUnbrandedNativeRows`): only Wyler L3 Vault + the four branded wallets (OKX / Phantom / MetaMask / Coinbase) remain visible in the login/wallet section. Overlay script bumped to `?v=6`.
 - [x] All updates merged and pushed to GitHub (merge commit `e550986`; remote branding history preserved, local site versions won shared files).
 - [x] Fixed Vercel build failure: added `viem`, `wagmi`, `@tanstack/react-query` to `launch-app` (required by merged faucet route + Web3Provider) and fixed missing `Users` lucide import in `CreatorsTab.tsx`; verified with local `next build` (commit `519f439`).
+- [x] Restored the premium obsidian disconnected-wallet UI (Access Restricted → Connect Your Wallet to Unlock Balance, Connect Secure Wallet CTA, Disconnected badge, premium Send/Receive actions) that was lost when commit `91e2371` overwrote `WalletModule.tsx`; restored from `a602a58` and wrapped the root layout with `Web3Provider` so wagmi hooks prerender cleanly; verified with local `next build`.
 
 ## Pending Tasks
 - [ ] Connect `StitchMCP` to the application.
