@@ -14,9 +14,10 @@ import {
   Zap,
   ShieldCheck
 } from "lucide-react";
-import { useAccount, useBalance, useChainId, useSendTransaction, useWaitForTransactionReceipt, useConnect } from "wagmi";
+import { useAccount, useBalance, useChainId, useSendTransaction, useWaitForTransactionReceipt } from "wagmi";
 import { parseEther } from "viem";
 import Modal from "@/components/ui/Modal";
+import ConnectWalletModal from "@/components/ui/ConnectWalletModal";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import LiveTransactionFeed from "@/components/ui/LiveTransactionFeed";
 import AnimatedTabs from "@/components/ui/AnimatedTabs";
@@ -25,6 +26,7 @@ import { NetworkConfig } from "@/config/network";
 export default function WalletModule() {
   const [isSendOpen, setIsSendOpen] = React.useState(false);
   const [isReceiveOpen, setIsReceiveOpen] = React.useState(false);
+  const [isConnectOpen, setIsConnectOpen] = React.useState(false);
   const [isGasless, setIsGasless] = React.useState(true);
   const [sendAmount, setSendAmount] = React.useState("");
   const [recipient, setRecipient] = React.useState("");
@@ -40,16 +42,6 @@ export default function WalletModule() {
   const { address, isConnected } = useAccount();
   const currentChainId = useChainId();
   const isCorrectNetwork = currentChainId === NetworkConfig.chainIdDecimal;
-  const { connect, connectors } = useConnect();
-
-  const handleConnectWallet = () => {
-    const injected = connectors.find(c => c.id === 'injected' || c.id === 'metaMask');
-    if (injected) {
-      connect({ connector: injected });
-    } else if (connectors.length > 0) {
-      connect({ connector: connectors[0] });
-    }
-  };
 
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -159,7 +151,7 @@ export default function WalletModule() {
                     </p>
 
                     <button
-                      onClick={handleConnectWallet}
+                      onClick={() => setIsConnectOpen(true)}
                       className="group/btn relative px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 rounded-2xl font-bold uppercase tracking-widest text-[10px] text-white hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-all duration-300 transform active:scale-95 cursor-pointer border border-indigo-500/40 flex items-center gap-3 overflow-hidden"
                     >
                       <div className="absolute inset-0 bg-white/10 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
@@ -424,6 +416,8 @@ export default function WalletModule() {
            </button>
         </div>
       </Modal>
+
+      <ConnectWalletModal isOpen={isConnectOpen} onClose={() => setIsConnectOpen(false)} />
     </div>
   );
 }

@@ -3,7 +3,8 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
-import { useAccount, useConnect } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
+import ConnectWalletModal from "@/components/ui/ConnectWalletModal";
 import {
   Wallet as WalletIcon, 
   BarChart3, 
@@ -30,17 +31,18 @@ const TABS = [
 ] as const;
 
 export default function Dashboard() {
-  const { activeTab, setTab, logout, currentUser } = useAuth();
+  const { activeTab, setTab, logout, currentUser, isLoggedIn } = useAuth();
   const { address, isConnected } = useAccount();
-  const { connect, connectors } = useConnect();
+  const { disconnect } = useDisconnect();
+  const [isConnectOpen, setIsConnectOpen] = React.useState(false);
 
-  const handleConnectWallet = () => {
-    const injected = connectors.find((c) => c.id === "injected" || c.id === "metaMask");
-    if (injected) {
-      connect({ connector: injected });
-    } else if (connectors.length > 0) {
-      connect({ connector: connectors[0] });
-    }
+  // The header shows the connected profile chip when a wallet is linked OR a
+  // social passkey session is active; otherwise it offers CONNECT WALLET.
+  const isSessionActive = isConnected || isLoggedIn;
+
+  const handleLogout = () => {
+    disconnect();
+    logout();
   };
 
   const renderModule = () => {
@@ -89,9 +91,9 @@ export default function Dashboard() {
             
             <div className="h-8 w-[1px] bg-white/10 mx-2" />
 
-            {!isConnected ? (
+            {!isSessionActive ? (
               <button
-                onClick={handleConnectWallet}
+                onClick={() => setIsConnectOpen(true)}
                 className="flex items-center gap-2.5 px-7 py-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-indigo-400/40 shadow-[0_0_25px_rgba(99,102,241,0.45)] hover:shadow-[0_0_35px_rgba(99,102,241,0.65)] hover:scale-[1.03] active:scale-95 transition-all duration-300 cursor-pointer"
               >
                 <WalletIcon size={14} />
@@ -116,7 +118,7 @@ export default function Dashboard() {
             )}
 
             <button 
-              onClick={logout}
+              onClick={handleLogout}
               className="p-2.5 text-muted hover:text-error hover:bg-error/10 rounded-full transition-all ml-2"
               title="Logout"
             >
@@ -143,6 +145,8 @@ export default function Dashboard() {
           </AnimatePresence>
         </div>
       </main>
+
+      <ConnectWalletModal isOpen={isConnectOpen} onClose={() => setIsConnectOpen(false)} />
     </div>
   );
 }
