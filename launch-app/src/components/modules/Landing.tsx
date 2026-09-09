@@ -1,65 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
-import { ChevronRight, Zap, Shield, Repeat, Layers, Cpu, Globe } from "lucide-react";
+import { Zap, Shield, Repeat, Layers, Cpu, Globe } from "lucide-react";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import MetricsStrip from "@/components/ui/MetricsStrip";
 import EcosystemMarquee from "@/components/ui/EcosystemMarquee";
 import SuiReveal from "@/components/ui/SuiReveal";
-
-// ─── Boneyard Skeleton Loading Screen ─────────────────────────────────────────
-function BoneyardSkeleton({ onDone }: { onDone: () => void }) {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setVisible(false);
-      setTimeout(onDone, 600);
-    }, 1800);
-    return () => clearTimeout(timer);
-  }, [onDone]);
-
-  return (
-    <motion.div
-      animate={{ opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed inset-0 z-[999] bg-black flex flex-col gap-6 p-8 pointer-events-none"
-    >
-      {/* Nav skeleton */}
-      <div className="flex items-center justify-between">
-        <div className="skeleton h-8 w-40 rounded-full" />
-        <div className="flex gap-3">
-          <div className="skeleton h-8 w-24 rounded-full" />
-          <div className="skeleton h-8 w-24 rounded-full" />
-          <div className="skeleton h-9 w-32 rounded-full" />
-        </div>
-      </div>
-      {/* Hero skeleton */}
-      <div className="flex flex-col items-center gap-6 mt-20">
-        <div className="skeleton h-28 w-28 rounded-full" />
-        <div className="skeleton h-5 w-40 rounded-full" />
-        <div className="skeleton h-20 w-3/4 rounded-2xl" />
-        <div className="skeleton h-20 w-2/3 rounded-2xl" />
-        <div className="skeleton h-5 w-1/2 rounded-full" />
-        <div className="flex gap-4 mt-4">
-          <div className="skeleton h-14 w-44 rounded-full" />
-          <div className="skeleton h-14 w-44 rounded-full" />
-        </div>
-      </div>
-      {/* Metrics skeleton */}
-      <div className="grid grid-cols-5 gap-4 mt-12">
-        {Array(5).fill(0).map((_, i) => (
-          <div key={i} className="flex flex-col items-center gap-2">
-            <div className="skeleton h-10 w-24 rounded-lg" />
-            <div className="skeleton h-4 w-20 rounded-full" />
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
+import PlexusBackground from "@/components/ui/PlexusBackground";
 
 // ─── Feature Card ──────────────────────────────────────────────────────────────
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
@@ -77,104 +26,139 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
 // ─── Main Landing ─────────────────────────────────────────────────────────────
 export default function Landing() {
   const { setView } = useAuth();
-  const [loaded, setLoaded] = useState(false);
+
+  const navLinks = [
+    { label: "About", href: "#about" },
+    { label: "Stack", href: "#stack" },
+    { label: "Eco", href: "#eco" },
+    { label: "Roadmap", href: "#roadmap" },
+    { label: "Token", href: "#token" },
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-white void-bg">
-      {/* 1. Boneyard Skeleton Loading */}
-      {!loaded && <BoneyardSkeleton onDone={() => setLoaded(true)} />}
+    <div className="min-h-screen bg-black text-white void-bg scroll-smooth">
+      <PlexusBackground />
 
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: loaded ? 1 : 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
+        <div className="relative z-10">
         {/* Navbar */}
-        <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
-          <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <img src="/logos/wordmark.png" alt="WylerChain" className="h-8 w-auto" />
-            <div className="hidden md:flex items-center gap-6">
-              <button className="text-[10px] font-bold uppercase tracking-widest text-muted hover:text-white transition-colors">Infrastructure</button>
-              <button className="text-[10px] font-bold uppercase tracking-widest text-muted hover:text-white transition-colors">Ecosystem</button>
+        <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-black/70 backdrop-blur-xl">
+          <div className="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/" className="flex items-center gap-3">
+              <img src="/logos/mark.png" alt="Wyler Chain logo" className="h-9 w-auto" />
+              <span className="font-space font-bold text-sm uppercase tracking-[0.35em] text-white">
+                Wyler Chain
+              </span>
+            </a>
+
+            <div className="hidden lg:flex items-center gap-10">
+              {navLinks.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  className="text-[11px] font-space font-bold uppercase tracking-[0.25em] text-white/50 hover:text-white transition-colors"
+                >
+                  {l.label}
+                </a>
+              ))}
             </div>
-            <button
-              onClick={() => setView("LOGIN")}
-              className="px-6 py-2.5 btn-brand text-white text-[10px] font-bold rounded-full uppercase tracking-widest"
-            >
-              Launch App
-            </button>
+
+            <div className="flex items-center gap-6">
+              <a
+                href="#eco"
+                className="hidden md:block text-[11px] font-space font-bold uppercase tracking-[0.25em] text-white/60 hover:text-white transition-colors"
+              >
+                Join Ecosystem
+              </a>
+              <button
+                onClick={() => setView("DASHBOARD")}
+                className="px-7 py-3 bg-[#5B2EFF] hover:bg-[#6B42FF] text-white text-[11px] font-space font-bold uppercase tracking-[0.25em] rounded-lg transition-all duration-300 hover:shadow-[0_0_35px_rgba(91,46,255,0.55)]"
+              >
+                Launch App
+              </button>
+            </div>
           </div>
         </nav>
 
-        {/* 4. Sui Word-Reveal Hero */}
-        <section className="relative pt-48 pb-20 px-6 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-            className="text-center"
-          >
-            {/* 3D Float Logo */}
-            <div className="flex justify-center mb-8">
-              <img
-                src="/logos/mark.png"
-                alt="Wyler Logo"
-                className="h-28 w-auto float-logo drop-shadow-[0_0_40px_rgba(91,44,255,0.35)]"
-              />
+        {/* Hero */}
+        <section className="relative min-h-screen flex items-center pt-32 pb-20 px-6">
+          <div className="max-w-[1400px] mx-auto w-full grid lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="font-space font-bold uppercase leading-[0.95] tracking-tight text-6xl sm:text-7xl lg:text-[110px]"
+              >
+                <span className="block text-white">Wyler</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#6D5CFF] via-[#8B5CF6] to-[#A855F7] drop-shadow-[0_0_50px_rgba(124,92,255,0.45)]">
+                  Chain
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-white/60 text-lg md:text-xl max-w-xl mt-8 font-inter leading-relaxed"
+              >
+                A next-generation Layer 3 blockchain built on Arbitrum. Enabling zero gas fees, seamless social login, and scalable dApp deployment.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="mt-12 flex flex-col items-start gap-9"
+              >
+                <button
+                  onClick={() => setView("DASHBOARD")}
+                  className="px-12 py-4 bg-[#5B2EFF] hover:bg-[#6B42FF] text-white text-sm font-space font-bold uppercase tracking-[0.2em] rounded-lg transition-all duration-300 hover:shadow-[0_0_45px_rgba(91,46,255,0.55)]"
+                >
+                  Launch App
+                </button>
+
+                <a
+                  href="#stack"
+                  className="text-[11px] font-space font-bold uppercase tracking-[0.35em] text-white/80 hover:text-white transition-colors"
+                >
+                  Explore Docs
+                </a>
+              </motion.div>
             </div>
-
-            <span className="inline-block px-4 py-1.5 mb-6 text-xs font-mono font-bold tracking-[0.4em] uppercase border border-primary/20 bg-primary/5 text-primary rounded-full">
-              Official Prototype · Layer 3
-            </span>
-
-            <div className="mb-8">
-              <SuiReveal
-                text="Unlabeled Web3 Infrastructure"
-                as="h1"
-                className="text-5xl md:text-8xl font-space font-bold uppercase tracking-tighter text-white"
-                stagger={0.08}
-              />
-            </div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.7 }}
-              className="text-muted text-lg md:text-xl max-w-2xl mx-auto mb-10 font-inter"
-            >
-              WylerChain delivers scalable execution, zero-gas transactions, and builder-ready L3 infrastructure for the next generation of Web3 products.
-            </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="hidden lg:block"
             >
-              <motion.button
-                onClick={() => setView("LOGIN")}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="px-10 py-4 btn-brand text-white font-bold rounded-full flex items-center gap-2 cursor-pointer shadow-[0_0_30px_rgba(91,44,255,0.3)]"
-              >
-                Launch App <ChevronRight size={20} />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="px-10 py-4 bg-transparent border border-white/10 text-white font-bold rounded-full hover:bg-white/5 transition-all"
-              >
-                View Brand Kit
-              </motion.button>
+              <div className="rounded-2xl border border-white/10 overflow-hidden bg-black/40 shadow-[0_0_90px_rgba(91,46,255,0.18)]">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-auto"
+                >
+                  <source src="/Video/GENERATE_DEATAILS_PROMPT_202604081148.mp4" type="video/mp4" />
+                </video>
+              </div>
             </motion.div>
-          </motion.div>
+          </div>
         </section>
 
-        {/* 3. Animated Metrics Strip */}
-        <MetricsStrip />
+        {/* Animated Metrics Strip */}
+        <div id="about">
+          <MetricsStrip />
+        </div>
 
         {/* Feature Grid */}
-        <section className="py-24 px-6 max-w-7xl mx-auto">
+        <section id="stack" className="py-24 px-6 max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary mb-3">Core Features</p>
             <SuiReveal
@@ -194,7 +178,58 @@ export default function Landing() {
         </section>
 
         {/* 6. Infinite Ecosystem Marquee */}
-        <EcosystemMarquee />
+        <div id="eco">
+          <EcosystemMarquee />
+        </div>
+
+        {/* Roadmap */}
+        <section id="roadmap" className="py-24 px-6 max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary mb-3">Roadmap</p>
+            <SuiReveal
+              text="The Path to Mainnet"
+              as="h2"
+              className="text-3xl md:text-5xl font-space font-bold text-white uppercase tracking-tighter"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { n: "Phase 1", t: "MVP & Testnet", d: "Social login refinement, developer onboarding, and first cohort of dApps.", tags: ["LIVE", "TESTNET"] },
+              { n: "Phase 2", t: "Strategic Funding", d: "Expand partnerships, reward early ecosystem builders, and private round closing.", tags: ["Q3 2026", "FUNDING"] },
+              { n: "Phase 3", t: "Listings & Liquidity", d: "Targeting major exchanges: MEXC, KuCoin, Bybit, and Binance.", tags: ["EXCHANGES", "$WYLER"] },
+              { n: "Phase 4", t: "Mainnet & dApp Launch", d: "Staking, Governance, Grants, and massive Core Application adoption.", tags: ["MAINNET", "2027"] },
+            ].map((p) => (
+              <SpotlightCard key={p.n} className="p-8 bg-white/[0.02] border border-white/5 rounded-[24px] flex flex-col gap-4 group hover:border-primary/20 transition-all hover:-translate-y-1 duration-300">
+                <span className="font-mono text-primary font-bold text-xs tracking-[0.3em] uppercase">{p.n}</span>
+                <h3 className="text-xl font-space font-bold text-white">{p.t}</h3>
+                <p className="text-muted leading-relaxed font-inter text-sm">{p.d}</p>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {p.tags.map((t) => (
+                    <span key={t} className="px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest border border-white/10 rounded-full text-white/70">{t}</span>
+                  ))}
+                </div>
+              </SpotlightCard>
+            ))}
+          </div>
+        </section>
+
+        {/* Token */}
+        <section id="token" className="py-24 px-6 max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary mb-3">Token</p>
+            <SuiReveal
+              text="$WYLER Utility"
+              as="h2"
+              className="text-3xl md:text-5xl font-space font-bold text-white uppercase tracking-tighter"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <FeatureCard icon={<Zap />} title="Gas Abstraction" description="Zero gas fees across the network — transactions are sponsored by the protocol fee vault." />
+            <FeatureCard icon={<Layers />} title="Liquid Staking" description="Stake $WYLER to secure the L3 and earn yield while keeping your assets liquid." />
+            <FeatureCard icon={<Shield />} title="Governance" description="Shape the protocol — vote on upgrades, grants, and ecosystem parameters." />
+            <FeatureCard icon={<Globe />} title="Creator Rewards" description="Fuel social tipping, NFT royalties, and payouts across the creator economy." />
+          </div>
+        </section>
 
         {/* CTA Section */}
         <section className="py-32 px-6 text-center relative overflow-hidden">
@@ -230,6 +265,7 @@ export default function Landing() {
             <p className="text-[10px] font-bold uppercase tracking-widest text-muted">© 2026 WylerChain Foundation. All Rights Reserved.</p>
           </div>
         </footer>
+      </div>
       </motion.div>
     </div>
   );
