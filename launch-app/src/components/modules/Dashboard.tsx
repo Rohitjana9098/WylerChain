@@ -3,7 +3,8 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
-import { 
+import { useAccount, useConnect } from "wagmi";
+import {
   Wallet as WalletIcon, 
   BarChart3, 
   Users, 
@@ -30,6 +31,17 @@ const TABS = [
 
 export default function Dashboard() {
   const { activeTab, setTab, logout, currentUser } = useAuth();
+  const { address, isConnected } = useAccount();
+  const { connect, connectors } = useConnect();
+
+  const handleConnectWallet = () => {
+    const injected = connectors.find((c) => c.id === "injected" || c.id === "metaMask");
+    if (injected) {
+      connect({ connector: injected });
+    } else if (connectors.length > 0) {
+      connect({ connector: connectors[0] });
+    }
+  };
 
   const renderModule = () => {
     switch (activeTab) {
@@ -77,21 +89,31 @@ export default function Dashboard() {
             
             <div className="h-8 w-[1px] bg-white/10 mx-2" />
 
-            <div className="flex items-center gap-3 bg-white/5 p-1.5 pr-4 rounded-full border border-white/5 hover:border-primary/50 transition-all cursor-pointer group">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary via-primary-dim to-accent-blue flex items-center justify-center text-[10px] font-bold shadow-[0_0_15px_rgba(79,70,229,0.3)]">
-                WC
-              </div>
-              <div className="hidden sm:block text-left">
-                <p className="text-[10px] font-bold uppercase tracking-widest leading-none mb-1 group-hover:text-primary transition-colors">
-                  {currentUser}
-                </p>
-                <div className="flex items-center gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
-                  <p className="text-[8px] text-muted font-bold uppercase tracking-wider">L3 Protocol</p>
+            {!isConnected ? (
+              <button
+                onClick={handleConnectWallet}
+                className="flex items-center gap-2.5 px-7 py-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-indigo-400/40 shadow-[0_0_25px_rgba(99,102,241,0.45)] hover:shadow-[0_0_35px_rgba(99,102,241,0.65)] hover:scale-[1.03] active:scale-95 transition-all duration-300 cursor-pointer"
+              >
+                <WalletIcon size={14} />
+                Connect Wallet
+              </button>
+            ) : (
+              <div className="flex items-center gap-3 bg-white/5 p-1.5 pr-4 rounded-full border border-white/5 hover:border-primary/50 transition-all cursor-pointer group">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary via-primary-dim to-accent-blue flex items-center justify-center text-[10px] font-bold shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                  WC
                 </div>
+                <div className="hidden sm:block text-left">
+                  <p className="text-[10px] font-bold uppercase tracking-widest leading-none mb-1 group-hover:text-primary transition-colors">
+                    {currentUser || (address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "Wallet")}
+                  </p>
+                  <div className="flex items-center gap-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
+                    <p className="text-[8px] text-muted font-bold uppercase tracking-wider">L3 Protocol</p>
+                  </div>
+                </div>
+                <ChevronDown size={14} className="text-muted" />
               </div>
-              <ChevronDown size={14} className="text-muted" />
-            </div>
+            )}
 
             <button 
               onClick={logout}
